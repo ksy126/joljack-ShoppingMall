@@ -28,11 +28,28 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/main.do")
-    public ModelAndView insert_member( 	HttpServletRequest 					request,
-    									HttpServletResponse 				response,
-    									@RequestParam Map<String, Object> 	map) throws Exception {
+    public ModelAndView main( 	HttpServletRequest 					request,
+    							HttpServletResponse 				response,
+    							@RequestParam Map<String, Object> 	map) throws Exception {
     	
-    	ModelAndView mav = new ModelAndView("main/main");
+    	ModelAndView mav = new ModelAndView("service/main/main");
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 상품 리스트 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/shop/list.do")
+    public ModelAndView shopList( 	HttpServletRequest 					request,
+    								HttpServletResponse 				response,
+    								@RequestParam Map<String, Object> 	map) throws Exception {
+    	
+    	ModelAndView mav = new ModelAndView("service/main/shopList");
     	return mav;
     }
 	

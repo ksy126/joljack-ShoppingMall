@@ -32,7 +32,7 @@ public class AuthController {
     									HttpServletResponse 				response,
     									@RequestParam Map<String, Object> 	map) throws Exception {
     	
-    	ModelAndView mav = new ModelAndView("auth/login");
+    	ModelAndView mav = new ModelAndView("service/auth/login");
     	return mav;
     }
 	
@@ -49,7 +49,7 @@ public class AuthController {
     									HttpServletResponse 				response,
     									@RequestParam Map<String, Object> 	map) throws Exception {
     	
-    	ModelAndView mav = new ModelAndView("auth/join");
+    	ModelAndView mav = new ModelAndView("service/auth/join");
     	return mav;
     }
 	

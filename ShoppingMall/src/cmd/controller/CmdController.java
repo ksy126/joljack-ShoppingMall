@@ -29,7 +29,7 @@ public class CmdController
 		
 		
 		
-		return "member/login";
+		return "service/member/login";
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class CmdController
     	
     	model.addAttribute("", IsValid);
     	
-    	return "main/main";	
+    	return "service/main/main";	
     }
     
     /**
