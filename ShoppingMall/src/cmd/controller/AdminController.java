@@ -45,9 +45,9 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/member.do")
-    public ModelAndView member( 	HttpServletRequest 					request,
-    									HttpServletResponse 				response,
-    									@RequestParam Map<String, Object> 	map) throws Exception {
+    public ModelAndView member( HttpServletRequest 					request,
+    							HttpServletResponse 				response,
+    							@RequestParam Map<String, Object> 	map) throws Exception {
     	
     	ModelAndView mav = new ModelAndView("admin/member");
     	return mav;
@@ -62,13 +62,26 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/product/regeist.do")
-    public ModelAndView productRegeist( 	HttpServletRequest 					request,
+    public ModelAndView productRegeist( HttpServletRequest 					request,
     									HttpServletResponse 				response,
     									@RequestParam Map<String, Object> 	map) throws Exception {
     	
     	ModelAndView mav = new ModelAndView("admin/product_regeist");
     	return mav;
     }
+	
+	/**
+	 * 상픔 등록
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/save/product.do")
+	public ModelAndView saveProduct(@RequestParam Map<String, Object> 	map) {
+		System.out.println("@@@"+map);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;		
+	}
 	
 	/**
 	 * 상품 리스트 수정/삭제
@@ -79,9 +92,9 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/product/list.do")
-    public ModelAndView productList( 	HttpServletRequest 					request,
-    									HttpServletResponse 				response,
-    									@RequestParam Map<String, Object> 	map) throws Exception {
+    public ModelAndView productList( HttpServletRequest 				request,
+    								 HttpServletResponse 				response,
+    								 @RequestParam Map<String, Object> 	map) throws Exception {
     	
     	ModelAndView mav = new ModelAndView("admin/product_list");
     	return mav;
@@ -96,9 +109,9 @@ public class AdminController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/question.do")
-    public ModelAndView question( 	HttpServletRequest 					request,
-    									HttpServletResponse 				response,
-    									@RequestParam Map<String, Object> 	map) throws Exception {
+    public ModelAndView question( HttpServletRequest 				request,
+    							  HttpServletResponse 				response,
+    							  @RequestParam Map<String, Object> map) throws Exception {
     	
     	ModelAndView mav = new ModelAndView("admin/question");
     	return mav;

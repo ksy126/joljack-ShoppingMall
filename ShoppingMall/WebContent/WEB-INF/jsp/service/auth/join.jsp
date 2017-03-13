@@ -6,91 +6,83 @@
 <html>
 	<jsp:include page="../common/script.jsp"/>
 <body>
-	<jsp:include page="../common/header.html"/>
-    
-    <!-- 페이지 내용 -->
-    <div class="container col-md-6 col-md-offset-3" align="center">
-    <div class="login-panel panel panel-info">
-	    <div class="panel-heading">
-	        <h2 class="panel-title">회원 가입</h2>
-	    </div>
-		<div class="panel-body">
-			<fieldset>
-			<form class="form-horizontal">
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">아이디</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="아이디">
-			    </div>
-			    <div class="col-sm-2" align="left">
-			    	<button type="button" class="btn btn-warning btn-sm">중복확인</button>
-			    </div>		    
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">비밀번호</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="password" placeholder="비밀번호">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">비밀번호 확인</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="password" placeholder="비밀번호">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">이름</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">생년월일</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">성별</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">주소</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">전화번호</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-sm-1">&nbsp;</div>
-			    <label class="col-sm-3 control-label">이메일</label>
-			    <div class="col-sm-5">
-			      <input class="form-control" id="" type="text" placeholder="">
-			    </div>
-			  </div>
-			</form>
-			</fieldset>
-		</div>
-		<div style="margin-bottom: 1.5em;">
-		  <button type="button" class="btn btn-info">회원가입</button>
-		  <button type="button" class="btn btn-default">취소</button>
-		</div>
-	</div>
-	</div>
+	<jsp:include page="../common/header.jsp"/>
+<section id="form" style="margin-top: 3em;"><!--form-->
+<article class="container">
+        <div class="col-md-12">
+	        <div class="page-header">
+	    	    <h1>회원가입 <small>horizontal form</small></h1>
+	        </div>
+	        <form class="form-horizontal">
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputNumber">아이디</label>
+		              <div class="col-sm-6">
+		                <div class="input-group">
+		                  <input type="tel" class="form-control" id="inputNumber" placeholder="아이디를 입력하세요" />
+		                  <span class="input-group-btn">
+		                    <button type="submit" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
+		                  </span>
+		                </div>
+		              </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+			        <div class="col-sm-6">
+			          <input class="form-control" id="inputPassword" type="password" placeholder="비밀번호">
+			        </div>
+		        </div>
+	            <div class="form-group">
+	            	<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
+	            	<div class="col-sm-6">
+	            		<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
+	                	<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+	          		</div>
+	            </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputName">이름</label>
+		          <div class="col-sm-6">
+		            <input class="form-control" id="inputName" type="text" placeholder="이름">
+		          </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
+		              <div class="col-sm-6">
+		                  <input type="tel" class="form-control" id="inputNumber" placeholder="- 없이 입력해 주세요" />
+		              </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputNumberCheck">우편번호</label>
+		          <div class="col-sm-6">
+		            <div class="input-group">
+		              <input class="form-control" id="inputNumberCheck" type="text" placeholder="우편번호">
+		              <span class="input-group-btn">
+		                <button class="btn btn-success" type="button">주소 검색 &nbsp;<i class="fa fa-edit spaceLeft"></i></button>
+		              </span>
+		            </div>
+		          </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputNumber">주소</label>
+		              <div class="col-sm-6">
+		                  <input type="tel" class="form-control" id="inputNumber" placeholder="" />
+		              </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputNumber">상세주소</label>
+		              <div class="col-sm-6">
+		                  <input type="tel" class="form-control" id="inputNumber" placeholder="" />
+		              </div>
+		        </div>
+		        <div class="form-group">
+		            <div class="form-group text-center">
+		              <button type="submit" class="btn btn-default">회원가입 &nbsp;<i class="fa fa-check spaceLeft"></i></button>
+		              <button type="submit" class="btn btn-default">가입취소 &nbsp;<i class="fa fa-times spaceLeft"></i></button>
+		            </div>
+		        </div>
+	        </form>
+	        <hr>
+        </div>
+      </article>
+	</section><!--/form-->
 </body>
 </html>

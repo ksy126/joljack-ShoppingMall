@@ -4,21 +4,29 @@
 %>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Shopping Mall</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="<%=cp%>/css/bootstrap.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="<%=cp%>/css/business-casual.css" rel="stylesheet">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    <title>Home | E-Shopper</title>
+    <link href="<%=cp%>/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="<%=cp%>/css/prettyPhoto.css" rel="stylesheet">
+    <link href="<%=cp%>/css/price-range.css" rel="stylesheet">
+    <link href="<%=cp%>/css/animate.css" rel="stylesheet">
+	<link href="<%=cp%>/css/main.css" rel="stylesheet">
+	<link href="<%=cp%>/css/responsive.css" rel="stylesheet">
 	
-	<!-- jQuery -->
+    <link rel="shortcut icon" href="<%=cp%>/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%=cp%>/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%=cp%>/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%=cp%>/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="<%=cp%>/images/ico/apple-touch-icon-57-precomposed.png">
+    
+      
     <script src="<%=cp%>/js/jquery.js"></script>
-    <script src="<%=cp%>/js/bootstrap.min.js"></script>
+	<script src="<%=cp%>/js/bootstrap.min.js"></script>
+	<script src="<%=cp%>/js/jquery.scrollUp.min.js"></script>
+	<script src="<%=cp%>/js/price-range.js"></script>
+    <script src="<%=cp%>/js/jquery.prettyPhoto.js"></script>
+    <script src="<%=cp%>/js/main.js"></script>
 </head>

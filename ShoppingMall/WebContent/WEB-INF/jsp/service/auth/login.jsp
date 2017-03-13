@@ -6,36 +6,39 @@
 <html>
 	<jsp:include page="../common/script.jsp"/>
 <body>
-	<jsp:include page="../common/header.html"/>
+	<jsp:include page="../common/header.jsp"/>
     
-    <!-- 페이지 내용 -->
-    <div class="container" align="center">
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="login-panel panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">로그인</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Id" name="email" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="#" class="btn btn-lg btn-success btn-block">로그인</a>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-	</div>	
+<section id="form" style="margin-top: 3em;"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="login-form"><!--login form-->
+						<h2>로그인</h2>
+						<hr>
+						<form action="#">
+							<input type="text" placeholder="아이디" />
+							<input type="password" placeholder="비밀번호" />
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>회원가입 & 아이디/비밀번호 찾기</h2>
+						<hr>
+						<form action="#">
+							<button type="submit" class="btn btn-default">회원가입</button>
+							<br>
+							<button type="submit" class="btn btn-default">아이디/비밀번호 찾기</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
