@@ -59,6 +59,6 @@
 			</div>
 		</div>
 	</section>
-    <jsp:include page="../common/footer.html"/>
+    <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
