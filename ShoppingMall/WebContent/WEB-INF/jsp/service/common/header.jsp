@@ -7,13 +7,17 @@
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-4" align="center">검색</div>
-					<div class="col-xs-4" align="center">
-						<div class="logo">
-							<a href="#"><img src="<%=cp%>/images/mainSlider/logo.png" style="width: 60px;" alt="" /></a> 
+					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search"/>
 						</div>
 					</div>
 					<div class="col-xs-4" align="center">
+						<div class="logo">
+							<a href="#"><img src="<%=cp%>/images/mainSlider/logo.png" style="width: 80px;" alt="" /></a> 
+						</div>
+					</div>
+					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">
 						<div class="social-icons pull-left">
 							<ul class="nav navbar-nav">
 								<li><a href="/auth/login.do"><i class="fa fa-lock"></i> 로그인</a></li>
