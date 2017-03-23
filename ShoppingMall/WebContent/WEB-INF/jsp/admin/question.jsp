@@ -7,7 +7,7 @@
 	<jsp:include page="common/script.jsp"/>
 
 <body>
-	<jsp:include page="common/navigation.html"/>
+	<jsp:include page="common/navigation.jsp"/>
 	
 	<div id="page-wrapper">
 	    <div class="row">

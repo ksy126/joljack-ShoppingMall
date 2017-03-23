@@ -44,8 +44,8 @@
 								<li><a href="/main/shop/list/shirt.do"><strong>SHIRT & KNIT</strong></a></li> 
 								<li><a href="/main/shop/list/pants.do"><strong>PANTS</strong></a></li>
 								<li><a href="/main/shop/list/acc.do"><strong>ACC</strong></a></li>
-								<li><a href="/main/qa.do"><strong>공지사항</strong></a></li>
-								<li><a href="/main/qa.do"><strong>문의하기</strong></a></li>
+								<li><a href="/main/qa.do"><strong>NOTICE</strong></a></li>
+								<li><a href="/main/qa.do"><strong>Q&A</strong></a></li>
 							</ul>
 						</div>
 					</div>

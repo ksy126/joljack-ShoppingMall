@@ -2,12 +2,15 @@ package cmd.controller;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import cmd.service.AdminService;
 
 
 /**
@@ -18,6 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller("admin")
 @RequestMapping("/admin")
 public class AdminController {
+	
+	@Resource(name = "adminService")
+	private AdminService adminService;
 	
 	/**
 	 * 메인 페이지 이동
@@ -76,8 +82,10 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping(value="/save/product.do")
-	public ModelAndView saveProduct(@RequestParam Map<String, Object> 	map) {
-		System.out.println("@@@"+map);
+	public ModelAndView saveProduct(@RequestParam Map<String, Object> 	pMap) {		
+		
+		adminService.productPost(pMap);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("jsonView");
 		return mav;		
