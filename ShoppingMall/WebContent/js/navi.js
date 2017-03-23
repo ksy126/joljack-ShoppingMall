@@ -7,7 +7,7 @@ function Navi() {
     
     // 상품 상세 페이지 이동 함수
     _this.detailsPage = function(product_no) {
-//    	location.href = "/main/details.do?product_no="+product_no;
+    	location.href = "/main/details.do?product_no="+product_no;
     };
     
     // Init

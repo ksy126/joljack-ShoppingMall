@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 %>
@@ -53,7 +54,7 @@
 		<div class="container">
 			<div class="row">				
 				<div class="col-xs-12">
-					<div class="features_items"><!--features_items-->					
+					<div class="features_items">				
 						<div class="col-xs-6">
 							<h2 class="title text-center">NOTICE</h2>
 							<br>
@@ -68,155 +69,47 @@
 							<br>
 							<br>
 						</div>
+					</div>
 					
 					
-					
-					
-					
+					<!--new_items-->
+					<div class="features_items">
 						<h2 class="title text-center">NEW Items</h2>
+						<c:forEach var="row" items="${newItemList}">
 						<div class="col-xs-3">
 							<div class="product-image-wrapper">
 								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
+									<div class="productinfo text-center" onclick="navi.detailsPage('${row.product_no}')">
+										<img src="/upload/img/${row.p_img}" alt="" />
+										<p>${row.p_name}</p>
+										<h2><i class="fa fa-krw" aria-hidden="true"></i>${row.p_price}</h2>										
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>					
-					</div><!--features_items-->
+						</c:forEach>								
+					</div>
+					<!--new_items-->
 					
 					
-					
-										<div class="features_items"><!--features_items-->
+					<!--best_items-->
+					<div class="features_items">
 						<h2 class="title text-center">BEST Items</h2>
+						<c:forEach var="row" items="${bestItemList}">
 						<div class="col-xs-3">
 							<div class="product-image-wrapper">
 								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
+									<div class="productinfo text-center" onclick="navi.detailsPage('${row.product_no}')">
+										<img src="/upload/img/${row.p_img}" alt="" />
+										<p>${row.p_name}</p>
+										<h2><i class="fa fa-krw" aria-hidden="true"></i>${row.p_price}</h2>										
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-3">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="<%=cp%>/images/111.jpg" alt="" />
-										<p>Easy Polo Black Edition</p>
-										<h2><i class="fa fa-krw" aria-hidden="true"></i> 30000</h2>										
-									</div>
-								</div>
-							</div>
-						</div>					
-					</div><!--features_items-->	
-					
-					
-					
-							
+						</c:forEach>				
+					</div>
+					<!--best_items-->
 				</div>
 			</div>
 		</div>

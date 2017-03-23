@@ -25,7 +25,7 @@
 			, #{p_info}
 			, #{p_price}
 			, #{p_amount}
-			, #{p_buy_amount}
+			, 0
 			, NOW()
 		)
 	</insert>

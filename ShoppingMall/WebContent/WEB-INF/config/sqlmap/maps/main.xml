@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+
+	<select id="selectProductList" parameterType="map" resultType="cmd.vo.ProductVO">
+		SELECT
+			*
+		FROM
+			product
+		where
+			1=1
+			<choose>
+				<when test="category == 'outer'">
+					AND p_category = 'outer'
+				</when>
+				<when test="category == 'top'">
+					AND p_category = 'top'
+				</when>
+				<when test="category == 'shirt'">
+					AND p_category = 'shirt'
+				</when>
+				<when test="category == 'pants'">
+					AND p_category = 'pants'
+				</when>
+				<when test="category == 'acc'">
+					AND p_category = 'acc'
+				</when>
+				<otherwise>
+					AND 2=2
+				</otherwise>
+			</choose>
+		ORDER by
+			<choose>
+				<when test="type == 'best'">
+					p_buy_amount DESC
+				</when>
+				<otherwise>
+					p_insert_date DESC
+				</otherwise>
+			</choose>
+		LIMIT #{po}, #{ps}
+	</select>
+	
+	<select id="selectProductInfo" parameterType="map" resultType="cmd.vo.ProductVO">
+		SELECT
+			*
+		FROM
+			product
+		where
+			product_no = #{product_no}
+	</select>
+	
+</mapper>

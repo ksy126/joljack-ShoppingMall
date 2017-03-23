@@ -27,5 +27,6 @@
     <script src="<%=cp%>/adminJs/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<%=cp%>/adminJs/sb-admin-2.js"></script>
+    <script type="text/javascript"  src="<%=cp%>/js/jquery.form.js"></script>
 
 </head>

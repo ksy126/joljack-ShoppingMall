@@ -26,4 +26,5 @@
 	<script src="<%=cp%>/js/price-range.js"></script>
     <script src="<%=cp%>/js/jquery.prettyPhoto.js"></script>
     <script src="<%=cp%>/js/main.js"></script>
+    <script src="<%=cp%>/js/navi.js"></script>
 </head>

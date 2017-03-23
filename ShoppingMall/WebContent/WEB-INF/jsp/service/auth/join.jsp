@@ -13,12 +13,12 @@
 	        <div class="page-header">
 	    	    <h1>회원가입 <small>horizontal form</small></h1>
 	        </div>
-	        <form class="form-horizontal">
+	        <div class="form-horizontal">
 		        <div class="form-group">
 		            <label class="col-sm-3 control-label" for="inputNumber">아이디</label>
 		              <div class="col-sm-6">
 		                <div class="input-group">
-		                  <input type="tel" class="form-control" id="inputNumber" placeholder="아이디를 입력하세요" />
+		                  <input type="tel" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
 		                  <span class="input-group-btn">
 		                    <button type="submit" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
 		                  </span>
@@ -28,26 +28,26 @@
 		        <div class="form-group">
 		            <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 			        <div class="col-sm-6">
-			          <input class="form-control" id="inputPassword" type="password" placeholder="비밀번호">
+			          <input class="form-control" id="user_pwd" type="password" placeholder="비밀번호">
 			        </div>
 		        </div>
 	            <div class="form-group">
 	            	<label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
 	            	<div class="col-sm-6">
-	            		<input class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
+	            		<input class="form-control" id="user_pwd_confirm" type="password" placeholder="비밀번호 확인">
 	                	<p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
 	          		</div>
 	            </div>
 		        <div class="form-group">
 		            <label class="col-sm-3 control-label" for="inputName">이름</label>
 		          <div class="col-sm-6">
-		            <input class="form-control" id="inputName" type="text" placeholder="이름">
+		            <input class="form-control" id="name" type="text" placeholder="이름">
 		          </div>
 		        </div>
 		        <div class="form-group">
 		            <label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
 		              <div class="col-sm-6">
-		                  <input type="tel" class="form-control" id="inputNumber" placeholder="- 없이 입력해 주세요" />
+		                  <input type="tel" class="form-control" id="phone" placeholder="- 없이 입력해 주세요" />
 		              </div>
 		        </div>
 		        <div class="form-group">
@@ -75,16 +75,147 @@
 		        </div>
 		        <div class="form-group">
 		            <div class="form-group text-center">
-		              <button type="submit" class="btn btn-default">회원가입 &nbsp;<i class="fa fa-check spaceLeft"></i></button>
-		              <button type="submit" class="btn btn-default">가입취소 &nbsp;<i class="fa fa-times spaceLeft"></i></button>
+		              <button class="btn btn-default" onclick="app.memberInsertData()">회원가입 &nbsp;<i class="fa fa-check spaceLeft"></i></button>
+		              <button class="btn btn-default">가입취소 &nbsp;<i class="fa fa-times spaceLeft"></i></button>
 		            </div>
 		        </div>
-	        </form>
+	        </div>
 	        <hr>
         </div>
       </article>
 	</section><!--/form-->
 	<jsp:include page="../common/footer.jsp"/>
+<script type="text/javascript">
+function App() {
+    var _this = this;
+    
+    // ENV
+    _this.env = {};
+    _this.env.user_id = $('#user_id');
+    _this.env.user_pwd = $('#user_pwd');
+    _this.env.user_pwd_confirm = $('#user_pwd_confirm');
+    _this.env.name = $('#name');
+    _this.env.phone = $('#phone');
+    _this.env.zip_code = $('#zip_code');
+    _this.env.address = $('#address');
+    _this.env.sub_address = $('#sub_address');
+    
+    
+    _this.memberIsVaild = function() {
+    	var isVaild = true;
+    	
+    	if(_this.env.user_id.val().trim() == ''){
+    		alert("아이디를 입력해 주세요.");
+    		_this.env.user_id.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.user_pwd.val().trim() == ''){
+    		alert("비밀번호를 입력해 주세요.");
+    		_this.env.user_pwd.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.user_pwd_confirm.val().trim() == ''){
+    		alert("비밀번호를 확인해 주세요.");
+    		_this.env.user_pwd_confirm.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	// 비밀번호 확인
+    	var password = _this.env.user_pwd.val().trim();
+    	var re_password = _this.env.user_pwd_confirm.val().trim();
+    	if(password != re_password){
+    		alert("비밀번호가 일치하지 않습니다.");
+    		_this.env.user_pwd_confirm.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.name.val().trim() == ''){
+    		alert("이름을 입력해 주세요.");
+    		_this.env.name.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.phone.val().trim() == ''){
+    		alert("전화번호를 입력해 주세요.");
+    		_this.env.phone.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.address.val().trim() == ''){
+    		alert("주소를 입력해 주세요.");
+    		_this.env.address.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.sub_address.val().trim() == ''){
+    		alert("상세 주소를 입력해 주세요.");
+    		_this.env.sub_address.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	return isVaild;
+    };
+    
+    // 상품 등록
+    _this.memberInsertData = function() {
+    	var isVaild = false;
+    	
+    	isVaild = _this.memberIsVaild();
+    	
+   		if(isVaild){
+   			var params = {
+	    		user_id : _this.env.user_id.val(),
+	    		user_pwd : _this.env.user_pwd.val(),
+	    		name : _this.env.name,
+	    	    phone : _this.env.phone,
+	    		zip_code : _this.env.zip_code.val(),
+	    		address : _this.env.address.val(), 
+	    		sub_address : _this.env.sub_address.val()
+	    	};
+	    	
+			$.ajax({
+			      type        : "POST"
+			    , async       : true
+			    , url         : "/auth/joinData.do"
+			    , data        : params
+			    , dataType    : "json"
+			    , timeout     : 30000  
+			    , cache       : false    
+			    //, contentType : "application/x-www-form- urlencoded;charset=UTF-8"
+			    , success     : function(data) {
+					alert("회원 가입이 완료 되었습니다.");
+					location.reload();
+			    }
+			    , error       : function(request, status, error) {
+			        alert( "작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오." );       
+			    }
+			});
+   		}
+    	    
+    };
+    
+    // 이벤트 바인드
+    _this.eventBind = function() {
+        
+    };
+    
+    // Init
+    _this.init = function() {
+        _this.eventBind();
+    }();
+}    
+var app = new App();
+</script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     function daumPostcode() {
