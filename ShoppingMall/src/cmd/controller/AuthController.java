@@ -1,10 +1,13 @@
 package cmd.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cmd.service.AuthService;
+import cmd.vo.MemberVO;
 
 
 /**
@@ -74,6 +78,38 @@ public class AuthController {
 		mav.setViewName("jsonView");
 		return mav;		
 	}
+	
+	/**
+	 * 로그인 처리
+	 * @param req
+	 * @param res
+	 * @param map
+	 * @return
+	 */
+    @RequestMapping("/userLogin.do")
+    public ModelAndView user_login( HttpServletRequest req, 
+						    		HttpServletResponse res,
+						    		@RequestParam Map<String, Object> map){
+    	MemberVO memberVo = null;
+    	memberVo = (MemberVO) authService.check_login(map);
+    	Map<String, Object> rMap = new HashMap<String, Object>();
+		ModelAndView mav = new ModelAndView();
+    	
+    	if(memberVo.getCheck() != "no"){
+    		HttpSession session = req.getSession(true);    		
+    		
+    		rMap.put("memberInfo", memberVo);
+    		session.setAttribute("sessionData", rMap);
+    		session.setAttribute("member_no", memberVo.getMember_no());
+    		mav.addObject("member_no", memberVo.getMember_no());
+    	}
+    	
+    	
+		mav.setViewName("jsonView");
+		mav.addObject("check", memberVo.getCheck());
+    	
+    	return mav;
+    }
 	
 	
 	

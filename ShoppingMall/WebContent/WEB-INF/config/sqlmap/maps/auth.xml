@@ -27,4 +27,27 @@
 		)
 	</insert>
 	
+	<select id="login_check" resultType="cmd.vo.MemberVO" parameterType="map">
+		/* 회원 아이디 비번 check*/
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			user_id = #{user_id}
+			and
+			user_pwd = #{user_pwd}
+	</select>
+	
+	<select id="select_member" parameterType="map" resultType="cmd.vo.MemberVO">
+		/*회원 정보 가져오기*/
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			member_no = #{member_no}
+	
+	</select>
+	
 </mapper>

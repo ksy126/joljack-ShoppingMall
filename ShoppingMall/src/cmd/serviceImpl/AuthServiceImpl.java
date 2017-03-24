@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import cmd.service.AuthService;
+import cmd.vo.MemberVO;
 import helper.dao.CommonDAO;
 
 
@@ -31,6 +32,31 @@ public class AuthServiceImpl implements AuthService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Object check_login(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		MemberVO memberVo = new MemberVO();
+		MemberVO memberVo2 = new MemberVO();
+		
+		try {
+			memberVo = (MemberVO) this.commonDao.getReadData("auth.login_check", map);
+			
+			if(memberVo == null){
+				memberVo2.setCheck("no");
+				memberVo = memberVo2;
+			} else {				
+				memberVo.setCheck("yes");
+				
+			}
+						
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return memberVo;
 	}
 
 
