@@ -40,5 +40,22 @@
 		</div>
 	</section><!--/form-->
 	<jsp:include page="../common/footer.jsp"/>
+<script type="text/javascript">
+function App() {
+    var _this = this;
+    
+    
+    // 이벤트 바인드
+    _this.eventBind = function() {
+        
+    };
+    
+    // Init
+    _this.init = function() {
+        _this.eventBind();
+    }();
+}    
+var app = new App();
+</script>
 </body>
 </html>

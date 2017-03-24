@@ -166,7 +166,7 @@ function App() {
     	return isVaild;
     };
     
-    // 상품 등록
+    // 회원 등록
     _this.memberInsertData = function() {
     	var isVaild = false;
     	
@@ -176,13 +176,13 @@ function App() {
    			var params = {
 	    		user_id : _this.env.user_id.val(),
 	    		user_pwd : _this.env.user_pwd.val(),
-	    		name : _this.env.name,
-	    	    phone : _this.env.phone,
+	    		name : _this.env.name.val(),
+	    	    phone : _this.env.phone.val(),
 	    		zip_code : _this.env.zip_code.val(),
 	    		address : _this.env.address.val(), 
 	    		sub_address : _this.env.sub_address.val()
 	    	};
-	    	
+   			
 			$.ajax({
 			      type        : "POST"
 			    , async       : true
@@ -190,11 +190,10 @@ function App() {
 			    , data        : params
 			    , dataType    : "json"
 			    , timeout     : 30000  
-			    , cache       : false    
-			    //, contentType : "application/x-www-form- urlencoded;charset=UTF-8"
+			    , cache       : false
 			    , success     : function(data) {
 					alert("회원 가입이 완료 되었습니다.");
-					location.reload();
+					location.href="/auth/login.do";
 			    }
 			    , error       : function(request, status, error) {
 			        alert( "작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오." );       
