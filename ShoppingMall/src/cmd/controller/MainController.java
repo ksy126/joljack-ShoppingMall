@@ -47,6 +47,8 @@ public class MainController {
 		List<Object> newItemList = null;
 		List<Object> bestItemList = null;
 		
+		pMap.put("search", "");
+		
 		// New Item 리스트
 		pMap.put("po", 0);
 		pMap.put("ps", 8);		
@@ -79,17 +81,28 @@ public class MainController {
     public ModelAndView shopList( 	HttpServletRequest 					request,
     								HttpServletResponse 				response,
     								@PathVariable String				category,
+    								@RequestParam(value="po", 			required=false, defaultValue="0") int po,
+    								@RequestParam(value="type", 		required=false, defaultValue="new") String type,
+    								@RequestParam(value="search", 		required=false, defaultValue="") String search,
     								@RequestParam Map<String, Object> 	pMap) throws Exception {
-    	
+    	// 기본 페이지 리스트 갯수.
+		int DefaultPs = 12;
+		
+		int poSet = po * DefaultPs;
+		
 		List<Object> itemList = null;
-		pMap.put("po", 0);
-		pMap.put("ps", 12);
+		pMap.put("po", poSet);
+		pMap.put("ps", DefaultPs);
 		pMap.put("category", category);
+		pMap.put("search", search);
 		
 		itemList = mainService.productList(pMap);
 		
     	ModelAndView mav = new ModelAndView("service/main/shopList");
     	mav.addObject("category", category);
+    	mav.addObject("po", po);
+    	mav.addObject("type", type);
+    	mav.addObject("search", search);
     	mav.addObject("itemList", itemList);
     	return mav;
     }

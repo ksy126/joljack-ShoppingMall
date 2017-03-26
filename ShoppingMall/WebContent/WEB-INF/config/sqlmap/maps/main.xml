@@ -30,10 +30,22 @@
 					AND 2=2
 				</otherwise>
 			</choose>
+			<if test="search != ''">
+				AND p_name LIKE CONCAT(#{search}, '%')
+			</if>
 		ORDER by
 			<choose>
+				<when test="type == 'new'">
+					p_insert_date DESC
+				</when>
 				<when test="type == 'best'">
 					p_buy_amount DESC
+				</when>
+				<when test="type == 'highPrice'">
+					p_price DESC
+				</when>
+				<when test="type == 'lowPrice'">
+					p_price ASC
 				</when>
 				<otherwise>
 					p_insert_date DESC

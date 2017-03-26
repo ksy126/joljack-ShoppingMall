@@ -27,4 +27,5 @@
     <script src="<%=cp%>/js/jquery.prettyPhoto.js"></script>
     <script src="<%=cp%>/js/main.js"></script>
     <script src="<%=cp%>/js/navi.js"></script>
+    <script src="<%=cp%>/js/search.js"></script>
 </head>

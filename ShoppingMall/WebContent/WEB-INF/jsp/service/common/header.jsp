@@ -9,7 +9,8 @@
 				<div class="row">
 					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input type="text" placeholder="Search" id="searchValue"/>
+							<button onclick="search.search()" class="btn btn-default">검색</button>
 						</div>
 					</div>
 					<div class="col-xs-4" align="center">

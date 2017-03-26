@@ -17,8 +17,7 @@
 						<hr>
 						<form>
 							<input type="text" id="user_id" placeholder="아이디" />
-							<input type="password" id="user_pwd" placeholder="비밀번호" />
-							
+							<input type="password" id="user_pwd" placeholder="비밀번호" />							
 						</form>
 						<button onclick="app.login()" class="btn btn-default">Login</button>
 					</div><!--/login form-->
@@ -31,7 +30,7 @@
 						<h2>회원가입 & 아이디/비밀번호 찾기</h2>
 						<hr>
 						<div align="center">
-						<button class="btn btn-default">회원가입</button>
+						<button class="btn btn-default" onclick="app.moveJoin()">회원가입</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-default">아이디/비밀번호 찾기</button>
 						</div>
@@ -45,6 +44,10 @@
 <script type="text/javascript">
 function App() {
     var _this = this;
+    
+    _this.moveJoin = function() {
+    	location.href="/auth/join.do";
+    }
     
     _this.login = function() {
     	var user_id = $("#user_id").val();

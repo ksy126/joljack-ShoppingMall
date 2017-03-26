@@ -1,5 +1,6 @@
 package cmd.serviceImpl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -31,6 +32,32 @@ public class AdminServiceImpl implements AdminService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void noticePost(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.insertData("admin.insertNotice", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Object> noticeList() {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("admin.selectNoticeList");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 

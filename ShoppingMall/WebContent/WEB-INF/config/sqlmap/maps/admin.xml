@@ -30,4 +30,29 @@
 		)
 	</insert>
 	
+	<insert id="insertNotice" parameterType="map">
+	/* 공지 등록 */
+	INSERT INTO
+		notice
+		(
+			notice_title
+			, notice_content
+			, notice_insertDate
+		)
+	VALUES
+		(
+			#{notice_title}
+			, #{notice_content}
+			, NOW()
+		)
+	</insert>
+	
+	<select id="selectNoticeList" resultType="map">
+	SELECT
+		*
+	FROM
+		notice
+	ORDER BY notice_insertDate DESC;
+	</select>
+	
 </mapper>

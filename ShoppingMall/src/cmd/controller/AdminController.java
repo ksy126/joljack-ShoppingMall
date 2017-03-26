@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -133,6 +134,78 @@ public class AdminController {
     }
 	
 	
+	/**
+	 * 공지 등록 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice/regeist.do")
+    public ModelAndView noticeRegeist( HttpServletRequest 					request,
+    									HttpServletResponse 				response,
+    									@RequestParam Map<String, Object> 	map) throws Exception {
+    	
+    	ModelAndView mav = new ModelAndView("admin/notice_regeist");
+    	return mav;
+    }
+	
+	/**
+	 * 공지 등록
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/save/notice.do")
+	public ModelAndView noticeProduct(@RequestParam Map<String, Object> 	pMap) {		
+		
+		adminService.noticePost(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;		
+	}
+	
+	/**
+	 * 공지 리스트
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice/list.do")
+    public ModelAndView noticeList( HttpServletRequest 				request,
+    								HttpServletResponse 				response,
+    								@RequestParam Map<String, Object> 	map) throws Exception {
+    	
+		List<Object> noticeList = null;
+		
+		noticeList = adminService.noticeList();
+		
+    	ModelAndView mav = new ModelAndView("admin/notice_list");
+    	mav.addObject("noticeList", noticeList);
+    	return mav;
+    }
+	
+	/**
+	 * 공지 상세 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice/details.do")
+    public ModelAndView noticeDetails( HttpServletRequest 				request,
+    								HttpServletResponse 				response,
+    								@RequestParam Map<String, Object> 	map) throws Exception {
+    	
+		
+		
+    	ModelAndView mav = new ModelAndView("admin/notice_list");
+    	return mav;
+    }
 	
 	
 	

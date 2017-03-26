@@ -26,6 +26,17 @@
                 <li>
                     <a href="/admin/question.do"><i class="fa fa-question-circle-o fa-fw"></i> 문의 관리</a>
                 </li>
+                <li>
+                    <a href="#"><i class="fa fa-exclamation-circle fa-fw"></i> 공지사항<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/admin/notice/regeist.do"> 공지 등록</a>
+                        </li>
+                        <li>
+                            <a href="/admin/notice/list.do"> 공지 리스트</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
