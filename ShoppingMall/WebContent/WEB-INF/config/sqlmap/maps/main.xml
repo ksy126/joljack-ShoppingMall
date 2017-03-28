@@ -63,4 +63,39 @@
 			product_no = #{product_no}
 	</select>
 	
+	<insert id="insertQaInfo" parameterType="map">
+		INSERT INTO
+			qa
+			(
+				member_no
+				, qa_title
+				, qa_content
+				, qa_insertDate
+			)
+		VALUES
+			(
+				#{member_no}
+				, #{qa_title}
+				, #{qa_content}
+				, NOW()
+			)
+	</insert>
+	
+	<select id="selectQaList" parameterType="map" resultType="cmd.vo.QaVO">
+		SELECT
+			q.qa_no
+			, q.member_no
+			, q.qa_title
+			, q.qa_content
+			, q.qa_insertDate
+			, m.name
+		FROM
+			qa q
+			, member m
+		WHERE
+			q.member_no = m.member_no
+		ORDER BY q.qa_insertDate DESC
+		LIMIT #{po}, #{ps}
+	</select>
+	
 </mapper>

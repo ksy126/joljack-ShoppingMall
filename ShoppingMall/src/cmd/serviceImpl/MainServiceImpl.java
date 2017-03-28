@@ -48,6 +48,32 @@ public class MainServiceImpl implements MainService
 		return resultInfo;
 	}
 
+	@Override
+	public void qaInfoPost(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.insertData("main.insertQaInfo", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Object> qaList(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("main.selectQaList", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 
 }//end class
 

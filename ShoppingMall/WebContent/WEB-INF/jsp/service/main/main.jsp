@@ -18,26 +18,17 @@
 					<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
 					<li data-target="#slider-carousel" data-slide-to="1"></li>
 					<li data-target="#slider-carousel" data-slide-to="2"></li>
-					<li data-target="#slider-carousel" data-slide-to="3"></li>
-					<li data-target="#slider-carousel" data-slide-to="4"></li>
-					<li data-target="#slider-carousel" data-slide-to="5"></li>
 				</ol>
 				
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="<%=cp%>/images/mainSlider/slide-1.png" style="width: 100%; height: 300px;">
+						<img src="<%=cp%>/images/mainSlider/slide01.jpg" style="width: 100%; height: 300px;">
 					</div>
 					<div class="item">
-						<img src="<%=cp%>/images/mainSlider/slide-2.png" style="width: 100%; height: 300px;">
+						<img src="<%=cp%>/images/mainSlider/slide02.jpg" style="width: 100%; height: 300px;">
 					</div>
 					<div class="item">
-						<img src="<%=cp%>/images/mainSlider/slide-3.png" style="width: 100%; height: 300px;">
-					</div>
-					<div class="item">
-						<img src="<%=cp%>/images/mainSlider/slide-4.png" style="width: 100%; height: 300px;">
-					</div>
-					<div class="item">
-						<img src="<%=cp%>/images/mainSlider/slide-5.png" style="width: 100%; height: 300px;">
+						<img src="<%=cp%>/images/mainSlider/slide03.jpg" style="width: 100%; height: 300px;">
 					</div>
 				</div>
 				
@@ -117,4 +108,33 @@
 	
 	<jsp:include page="../common/footer.jsp"/>
 </body>
+<script>
+$(document).ready(function(){
+	// 팝업 열기
+	openPopup();
+});
+/**
+ * 팝업 열기
+ * @param {String} url 			- 팝업 URL
+ * @param {Number} width 		- 팝업 Width
+ * @param {Number} height 		- 팝업 Height
+ */
+function openPopup() {
+	 var url = '/main/popup.do';
+	 var popupName = 'mainPop';
+	 var width = 414;
+	 var height = 400;
+	 
+	 var posX = (screen.availWidth - width) / 2;
+	 var posY = (screen.availHeight - height) / 2;	 
+	 
+	 var check = window.open(url, popupName,'width=' + width + ', height=' + height + ', left=' + posX + ', top=' + posY +', location=no, staus=no');
+	 //창이 열려 있는지 check
+	 if(check){
+		check.focus(); 
+	 } else {
+		 window.open(url, popupName,'width=' + width + ', height=' + height + ', left=' + posX + ', top=' + posY +', location=no, staus=no');
+	 }
+};
+</script>
 </html>

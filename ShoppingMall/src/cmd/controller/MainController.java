@@ -142,13 +142,63 @@ public class MainController {
 	@RequestMapping(value="/qa.do")
     public ModelAndView qa( 	HttpServletRequest 					request,
     							HttpServletResponse 				response,
-    							@RequestParam Map<String, Object> 	map) throws Exception {
+    							@RequestParam(value="po", 			required=false, defaultValue="0") int po,
+    							@RequestParam Map<String, Object> 	pMap) throws Exception {
+    	// 기본 페이지 리스트 갯수
+		int DefaultPs = 12;
+		int poSet = po * DefaultPs;
+		
+		List<Object> qaList = null;
+		pMap.put("po", poSet);
+    	pMap.put("ps", DefaultPs);
     	
+    	qaList = mainService.qaList(pMap);
 		
     	ModelAndView mav = new ModelAndView("service/main/qa");
+    	mav.addObject("qaList", qaList);
+    	mav.addObject("po", po);
     	return mav;
     }
 	
+	/**
+	 * 쇼핑몰 문의등록 페이지 이동
+	 */
+	@RequestMapping(value="/qa/write.do")
+    public ModelAndView qaWrite( HttpServletRequest 				request,
+    							 HttpServletResponse 				response,
+    							 @RequestParam Map<String, Object> 	map) throws Exception {    	
+		
+    	ModelAndView mav = new ModelAndView("service/main/qaWrite");
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 문의 DB 등록
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/qa/saveQa.do")
+    public ModelAndView qaSave( HttpServletRequest 					request,
+    							 HttpServletResponse 				response,
+    							 @RequestParam Map<String, Object> 	map) throws Exception {    	
+		
+		mainService.qaInfoPost(map);
+		
+    	ModelAndView mav = new ModelAndView("redirect:/main/qa.do");
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 찜하기 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/zzim.do")
     public ModelAndView zzim( 	HttpServletRequest 					request,
     							HttpServletResponse 				response,
@@ -159,6 +209,14 @@ public class MainController {
     	return mav;
     }
 	
+	/**
+	 * 장바구니 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/cart.do")
     public ModelAndView cart( 	HttpServletRequest 					request,
     							HttpServletResponse 				response,
@@ -168,5 +226,24 @@ public class MainController {
     	ModelAndView mav = new ModelAndView("service/main/cart");
     	return mav;
     }
+	
+	/**
+	 * 팝업 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/popup.do")
+    public ModelAndView popup( 	HttpServletRequest 					request,
+    							HttpServletResponse 				response,
+    							@RequestParam Map<String, Object> 	map) throws Exception {
+    	
+		
+    	ModelAndView mav = new ModelAndView("service/main/popup");
+    	return mav;
+    }
+	
 }
 

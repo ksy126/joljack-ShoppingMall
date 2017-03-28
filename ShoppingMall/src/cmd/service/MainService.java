@@ -23,6 +23,19 @@ public interface MainService {
 	 * @return
 	 */
 	public ProductVO productInfo(Map<String, Object> pMap);
+	
+	/**
+	 * 문의 등록 
+	 * @param pMap ( member_no / qa_title / qa_content )
+	 */
+	public void qaInfoPost(Map<String, Object> pMap);
+	
+	/**
+	 * 문의 리스트
+	 * @param pMap ( po / ps )
+	 * @return
+	 */
+	public List<Object> qaList(Map<String, Object> pMap);
 }
 
 
