@@ -22,10 +22,10 @@
 				
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="<%=cp%>/images/mainSlider/slide01.jpg" style="width: 100%; height: 300px;">
+						<a href="#newItem"><img src="<%=cp%>/images/mainSlider/slide01.jpg" style="width: 100%; height: 300px;"></a>
 					</div>
 					<div class="item">
-						<img src="<%=cp%>/images/mainSlider/slide02.jpg" style="width: 100%; height: 300px;">
+						<a href="#bestItem"><img src="<%=cp%>/images/mainSlider/slide02.jpg" style="width: 100%; height: 300px;"></a>
 					</div>
 					<div class="item">
 						<img src="<%=cp%>/images/mainSlider/slide03.jpg" style="width: 100%; height: 300px;">
@@ -45,27 +45,32 @@
 		<div class="container">
 			<div class="row">				
 				<div class="col-xs-12">
-					<div class="features_items">				
+					<div class="features_items" style="margin-bottom: 2em;">				
 						<div class="col-xs-6">
 							<h2 class="title text-center">NOTICE</h2>
-							<br>
-							<br>
-							<br>
-							<br>
+							<ul class="list-group" style="margin-right: 2em; margin-left: 2em;">
+							<c:forEach var="row" items="${noticeList}">
+						  		<li class="list-group-item">${row.notice_title}<span class="badge">관리자</span></li>
+						    </c:forEach>
+						    <li class="list-group-item" style="border-bottom: 0px; border-left: 0px; border-right: 0px;"> &nbsp;<span class="badge">
+						    <a href="/main/notice.do" style="color: #fff;">공지사항 바로가기 &nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></a></span></li>
+							</ul>
 						</div>
 						<div class="col-xs-6">
 							<h2 class="title text-center">Q & A</h2>
-							<br>
-							<br>
-							<br>
-							<br>
+							<ul class="list-group" style="margin-right: 2em; margin-left: 2em;">
+							<c:forEach var="row" items="${qaList}">
+						  		<li class="list-group-item">${row.qa_title}<span class="badge">${row.name}</span></li>
+						    </c:forEach>
+						    <li class="list-group-item" style="border-bottom: 0px; border-left: 0px; border-right: 0px;"> &nbsp;<span class="badge">
+						    <a href="/main/qa.do" style="color: #fff;">Q & A 바로가기 &nbsp;<i class="fa fa-hand-o-right" aria-hidden="true"></i></a></span></li>
+							</ul>
 						</div>
 					</div>
 					
-					
 					<!--new_items-->
-					<div class="features_items">
-						<h2 class="title text-center">NEW Items</h2>
+					<div class="features_items" style="margin-bottom: 2em;">
+						<h2 class="title text-center" id="newItem">NEW Items</h2>
 						<c:forEach var="row" items="${newItemList}">
 						<div class="col-xs-3">
 							<div class="product-image-wrapper">
@@ -84,8 +89,8 @@
 					
 					
 					<!--best_items-->
-					<div class="features_items">
-						<h2 class="title text-center">BEST Items</h2>
+					<div class="features_items" style="margin-bottom: 2em;">
+						<h2 class="title text-center" id="bestItem">BEST Items</h2>
 						<c:forEach var="row" items="${bestItemList}">
 						<div class="col-xs-3">
 							<div class="product-image-wrapper">

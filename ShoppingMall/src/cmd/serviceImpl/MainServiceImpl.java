@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import cmd.service.MainService;
+import cmd.vo.NoticeVO;
 import cmd.vo.ProductVO;
+import cmd.vo.QaVO;
 import helper.dao.CommonDAO;
 
 
@@ -73,6 +75,52 @@ public class MainServiceImpl implements MainService
 		
 		return result;
 	}
+
+	@Override
+	public QaVO qaInfoGET(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		QaVO qaVo = null;
+		
+		try {
+			qaVo = (QaVO) this.commonDao.getReadData("main.selectQaNo", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return qaVo;
+	}
+
+	@Override
+	public List<Object> noticeList(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("main.selectNoticeList", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public NoticeVO noticeInfoGET(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		NoticeVO noticeVo = null;
+		
+		try {
+			noticeVo = (NoticeVO) this.commonDao.getReadData("main.selectNoticeNo", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return noticeVo;
+	}
+
 
 
 }//end class

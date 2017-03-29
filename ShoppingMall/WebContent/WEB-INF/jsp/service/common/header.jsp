@@ -15,7 +15,7 @@
 					</div>
 					<div class="col-xs-4" align="center">
 						<div class="logo">
-							<a href="#"><img src="<%=cp%>/images/mainSlider/logo.png" style="width: 80px;" alt="" /></a> 
+							<a href="#"><img src="<%=cp%>/images/mainSlider/logo.png" alt="" /></a> 
 						</div>
 					</div>
 					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">
@@ -45,7 +45,7 @@
 								<li><a href="/main/shop/list/shirt.do"><strong>SHIRT & KNIT</strong></a></li> 
 								<li><a href="/main/shop/list/pants.do"><strong>PANTS</strong></a></li>
 								<li><a href="/main/shop/list/acc.do"><strong>ACC</strong></a></li>
-								<li><a href="/main/qa.do"><strong>NOTICE</strong></a></li>
+								<li><a href="/main/notice.do"><strong>NOTICE</strong></a></li>
 								<li><a href="/main/qa.do"><strong>Q&A</strong></a></li>
 							</ul>
 						</div>

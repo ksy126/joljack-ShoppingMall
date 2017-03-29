@@ -98,4 +98,39 @@
 		LIMIT #{po}, #{ps}
 	</select>
 	
+	<select id="selectQaNo" parameterType="map" resultType="cmd.vo.QaVO">
+		SELECT
+			q.qa_no
+			, q.member_no
+			, q.qa_title
+			, q.qa_content
+			, q.qa_insertDate
+			, m.name
+		FROM
+			qa q
+			, member m
+		WHERE
+			q.member_no = m.member_no
+		AND
+			q.qa_no = #{qa_no}
+	</select>
+	
+	<select id="selectNoticeList" parameterType="map" resultType="cmd.vo.NoticeVO">
+		SELECT
+			*
+		FROM
+			notice
+		ORDER BY notice_insertDate DESC
+		LIMIT #{po}, #{ps}
+	</select>
+	
+	<select id="selectNoticeNo" parameterType="map" resultType="cmd.vo.NoticeVO">
+		SELECT
+			*
+		FROM
+			notice
+		WHERE
+			notice_no = #{notice_no}
+	</select>
+	
 </mapper>

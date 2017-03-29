@@ -80,6 +80,40 @@ public class AuthController {
 	}
 	
 	/**
+	 * 회원 아이디 중복 검사
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/idCheck.do", method = RequestMethod.POST)
+	public ModelAndView idCheck(@RequestParam Map<String, Object> 	pMap) {		
+		Boolean isVaild = false;
+		
+		isVaild = authService.idCheck(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		mav.addObject("isVaild", isVaild);
+		return mav;		
+	}
+	
+	/**
+	 * 회원 전화번호 중복 검사
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/phoneCheck.do", method = RequestMethod.POST)
+	public ModelAndView phoneCheck(@RequestParam Map<String, Object> 	pMap) {		
+		Boolean isVaild = false;
+		
+		isVaild = authService.phoneCheck(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		mav.addObject("isVaild", isVaild);
+		return mav;		
+	}
+	
+	/**
 	 * 로그인 처리
 	 * @param req
 	 * @param res

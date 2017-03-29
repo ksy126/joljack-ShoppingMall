@@ -18,9 +18,10 @@
 		            <label class="col-sm-3 control-label" for="inputNumber">아이디</label>
 		              <div class="col-sm-6">
 		                <div class="input-group">
-		                  <input type="tel" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
+		                  <input type="text" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
+		                  <input type="hidden" value="" id="idConfirm">
 		                  <span class="input-group-btn">
-		                    <button type="submit" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
+		                    <button onclick="app.idCheck()" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
 		                  </span>
 		                </div>
 		              </div>
@@ -47,7 +48,14 @@
 		        <div class="form-group">
 		            <label class="col-sm-3 control-label" for="inputNumber">휴대폰번호</label>
 		              <div class="col-sm-6">
+		              	<div class="input-group">
 		                  <input type="tel" class="form-control" id="phone" placeholder="- 없이 입력해 주세요" />
+		                  <input type="hidden" value="" id="phoneConfirm">
+		                  <span class="input-group-btn">
+			                <button onclick="app.phoneCheck()" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
+			              </span>
+			            </div>
+		                <p style="margin-left: 1em; margin-top: 0.3em;">입력한 휴대폰 번호는 [아이디/비밀번호] 찾기에 이용됩니다.</p>
 		              </div>
 		        </div>
 		        <div class="form-group">
@@ -92,14 +100,86 @@ function App() {
     // ENV
     _this.env = {};
     _this.env.user_id = $('#user_id');
+    _this.env.idConfirm = $('#idConfirm');
     _this.env.user_pwd = $('#user_pwd');
     _this.env.user_pwd_confirm = $('#user_pwd_confirm');
     _this.env.name = $('#name');
     _this.env.phone = $('#phone');
+    _this.env.phoneConfirm = $('#phoneConfirm');
     _this.env.zip_code = $('#zip_code');
     _this.env.address = $('#address');
     _this.env.sub_address = $('#sub_address');
     
+    _this.phoneCheck = function() {
+    	var userPhone = _this.env.phone.val().trim();
+    	
+    	if(userPhone == ''){
+    		alert("번호 입력 후 확인 해주세요.");
+    		return false;
+    	}
+    	
+    	var params = "phone="+userPhone;
+    	
+    	$.ajax({
+		      type        : "POST"
+		    , async       : true
+		    , url         : "/auth/phoneCheck.do"
+		    , data        : params
+		    , dataType    : "json"
+		    , timeout     : 30000  
+		    , cache       : false
+		    , success     : function(data) {
+				if(data.isVaild){
+					alert("사용할 수 있는 번호입니다.");
+					_this.env.phoneConfirm.val(true);
+					_this.env.phone.attr("readonly",true);
+				} else {
+					alert("이미 사용된 번호 입니다.");
+					_this.env.phone.focus();
+					_this.env.phoneConfirm.val(false);
+				}
+		    }
+		    , error       : function(request, status, error) {
+		        alert( "작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오." );       
+		    }
+		});
+    };
+    
+    _this.idCheck = function() {
+    	var userId = _this.env.user_id.val().trim();
+    	
+    	if(userId == ''){
+    		alert("아이디 입력후 확인 해주세요.");
+    		return false;
+    	}
+    	
+    	var params = "user_id="+userId;
+    	
+    	$.ajax({
+		      type        : "POST"
+		    , async       : true
+		    , url         : "/auth/idCheck.do"
+		    , data        : params
+		    , dataType    : "json"
+		    , timeout     : 30000  
+		    , cache       : false
+		    , success     : function(data) {
+				if(data.isVaild){
+					alert("사용할 수 있는 아이디 입니다.");
+					_this.env.idConfirm.val(true);
+					_this.env.user_id.attr("readonly",true);
+				} else {
+					alert("이미 가입한 아이디 입니다.");
+					_this.env.user_id.focus();
+					_this.env.idConfirm.val(false);
+				}
+		    }
+		    , error       : function(request, status, error) {
+		        alert( "작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오." );       
+		    }
+		});
+    	
+    };
     
     _this.memberIsVaild = function() {
     	var isVaild = true;
@@ -110,6 +190,13 @@ function App() {
     		isVaild = false;
     		return isVaild;
     	}
+    	
+    	if(!_this.env.idConfirm.val()) {
+    		alert("아이디 중복 확인을 해주세요.");
+    		_this.env.user_id.focus();
+    		isVaild = false;
+    		return isVaild;
+    	};
     	
     	if(_this.env.user_pwd.val().trim() == ''){
     		alert("비밀번호를 입력해 주세요.");

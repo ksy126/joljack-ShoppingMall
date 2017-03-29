@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cmd.service.MainService;
+import cmd.vo.NoticeVO;
 import cmd.vo.ProductVO;
+import cmd.vo.QaVO;
 
 
 /**
@@ -46,6 +48,8 @@ public class MainController {
 
 		List<Object> newItemList = null;
 		List<Object> bestItemList = null;
+		List<Object> noticeList = null;
+		List<Object> qaList = null;
 		
 		pMap.put("search", "");
 		
@@ -60,9 +64,21 @@ public class MainController {
 		pMap.put("type", "best");
 		bestItemList = mainService.productList(pMap);
 		
+		// 공지사항 리스트
+		pMap.put("po", 0);
+		pMap.put("ps", 4);
+		noticeList = mainService.noticeList(pMap);
+		
+		// 문의사항 리스트
+		pMap.put("po", 0);
+		pMap.put("ps", 4);
+		qaList = mainService.qaList(pMap);
+		
     	ModelAndView mav = new ModelAndView("service/main/main");
     	mav.addObject("newItemList", newItemList);
     	mav.addObject("bestItemList", bestItemList);
+    	mav.addObject("noticeList", noticeList);
+    	mav.addObject("qaList", qaList);
     	return mav;
     }
 	
@@ -132,6 +148,52 @@ public class MainController {
     }
 	
 	/**
+	 * 쇼핑몰 공지 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice.do")
+    public ModelAndView notice( 	HttpServletRequest 					request,
+    							HttpServletResponse 				response,
+    							@RequestParam(value="po", 			required=false, defaultValue="0") int po,
+    							@RequestParam Map<String, Object> 	pMap) throws Exception {
+    	// 기본 페이지 리스트 갯수
+		int DefaultPs = 12;
+		int poSet = po * DefaultPs;
+		
+		List<Object> noticeList = null;
+		pMap.put("po", poSet);
+    	pMap.put("ps", DefaultPs);
+    	
+    	noticeList = mainService.noticeList(pMap);
+		
+    	ModelAndView mav = new ModelAndView("service/main/notice");
+    	mav.addObject("noticeList", noticeList);
+    	mav.addObject("po", po);
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 공지사항 상세페이지 이동
+	 */
+	@RequestMapping(value="/notice/detail.do")
+    public ModelAndView noticeDetais( HttpServletRequest 				request,
+    							 HttpServletResponse 				response,
+    							 @RequestParam Map<String, Object> 	map) throws Exception {    	
+		
+		NoticeVO noticeVo = null;
+		
+		noticeVo = mainService.noticeInfoGET(map);
+		
+    	ModelAndView mav = new ModelAndView("service/main/noticeDetail");
+    	mav.addObject("noticeVo", noticeVo);
+    	return mav;
+    }
+	
+	/**
 	 * 쇼핑몰 문의하기 페이지 이동
 	 * @param request
 	 * @param response
@@ -169,6 +231,23 @@ public class MainController {
     							 @RequestParam Map<String, Object> 	map) throws Exception {    	
 		
     	ModelAndView mav = new ModelAndView("service/main/qaWrite");
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 문의상세 페이지 이동
+	 */
+	@RequestMapping(value="/qa/detail.do")
+    public ModelAndView qaDetais( HttpServletRequest 				request,
+    							 HttpServletResponse 				response,
+    							 @RequestParam Map<String, Object> 	map) throws Exception {    	
+		
+		QaVO qaVo = null;
+		
+		qaVo = mainService.qaInfoGET(map);
+		
+    	ModelAndView mav = new ModelAndView("service/main/qaDetail");
+    	mav.addObject("qaVo", qaVo);
     	return mav;
     }
 	

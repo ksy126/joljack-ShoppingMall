@@ -15,11 +15,8 @@
 	<div class="container" style="margin-top: 2em; min-height: 600px;">
 	  <div>
 	  	<div class="col-sm-10" style="font-size: 24px; margin-bottom: 1.5em;">
-	  		<i class="fa fa-question-circle fa-3" aria-hidden="true"></i>&nbsp;<span>문의하기</span>
+	  		<i class="fa fa-hand-o-right fa-3" aria-hidden="true"></i>&nbsp;<span>공지사항</span>
 	  	</div>
-  		<div class="col-sm-2" align="right">
-			<button type="submit" class="btn btn-default" onclick="app.moveWrite()">문의 등록</button>
-		</div>
 	  </div>
 	  <table class="table table-striped">
 	    <thead>
@@ -30,11 +27,11 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <c:forEach var="row" items="${qaList}">
-	      <tr onclick="app.moveQaDetail('${row.qa_no}')">
-	        <td>${row.qa_no}</td>
-	        <td>${row.qa_title}</td>
-	        <td>${row.name}</td>
+	      <c:forEach var="row" items="${noticeList}">
+	      <tr onclick="app.moveQaDetail('${row.notice_no}')">
+	        <td>${row.notice_no}</td>
+	        <td>${row.notice_title}</td>
+	        <td>관리자</td>
 	      </tr>
 	      </c:forEach>
 	    </tbody>
@@ -59,24 +56,24 @@
 <script type="text/javascript">
 function App() {
     var _this = this;
+    
+    _this.moveQaDetail = function(notice_no) {
+    	location.href="/main/notice/detail.do?notice_no="+notice_no;
+    }
 
     // 페이징
     _this.paging = function(type) {
     	var pageNum = $('#po').val();
     	if(type == 'prev') {
     		pageNum = Number(pageNum) - 1;
-    		location.href="/main/qa.do?po="+pageNum;
+    		location.href="/main/notice.do?po="+pageNum;
     	} else if(type == 'next') {
     		pageNum = Number(pageNum) + 1;
-    		location.href="/main/qa.do?po="+pageNum;
+    		location.href="/main/notice.do?po="+pageNum;
     	} else if (type == 'first') {
-    		location.href="/main/qa.do?po=0";
+    		location.href="/main/notice.do?po=0";
     	}
     };
-    
-    _this.moveQaDetail = function(qa_no) {
-    	location.href="/main/qa/detail.do?qa_no="+qa_no;
-    }
     
 	// 문의 등록 페이지 이동
 	_this.moveWrite = function() {

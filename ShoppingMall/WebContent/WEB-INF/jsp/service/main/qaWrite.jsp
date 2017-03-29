@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 	String member_no="";
@@ -17,6 +18,15 @@
 <html lang="en">
 <head>
     <jsp:include page="../common/script.jsp"/>
+    
+    <!-- 세션 없으면 메인페이지로 강제 이동 -->
+	<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() == null || sessionScope.sessionData.memberInfo.getMember_no() ==''}">
+		<script>
+			history.back();
+			alert("로그인 후 이용해 주세요.");
+		</script>
+	</c:if> 
+    
 </head>
 
 <body>

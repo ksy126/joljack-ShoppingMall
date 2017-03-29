@@ -39,6 +39,24 @@
 			user_pwd = #{user_pwd}
 	</select>
 	
+	<select id="idCheck" resultType="cmd.vo.MemberVO" parameterType="map">
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			user_id = #{user_id}
+	</select>
+	
+	<select id="phoneCheck" resultType="cmd.vo.MemberVO" parameterType="map">
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			phone = #{phone}
+	</select>
+	
 	<select id="select_member" parameterType="map" resultType="cmd.vo.MemberVO">
 		/*회원 정보 가져오기*/
 		SELECT

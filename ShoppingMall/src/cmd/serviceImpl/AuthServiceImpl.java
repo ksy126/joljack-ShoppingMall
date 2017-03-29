@@ -59,6 +59,50 @@ public class AuthServiceImpl implements AuthService
 		return memberVo;
 	}
 
+	@Override
+	public Boolean idCheck(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		Boolean isVaild = false;
+		MemberVO memberVo = null;
+		
+		try {
+			memberVo = (MemberVO) this.commonDao.getReadData("auth.idCheck", map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(memberVo == null){
+			isVaild = true;
+		} else {
+			isVaild = false;
+		}
+		
+		return isVaild;
+	}
+
+	@Override
+	public Boolean phoneCheck(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		Boolean isVaild = false;
+		MemberVO memberVo = null;
+		
+		try {
+			memberVo = (MemberVO) this.commonDao.getReadData("auth.phoneCheck", map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(memberVo == null){
+			isVaild = true;
+		} else {
+			isVaild = false;
+		}
+		
+		return isVaild;
+	}
+
 
 }//end class
 

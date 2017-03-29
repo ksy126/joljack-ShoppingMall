@@ -8,8 +8,8 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
     
-<section id="form" style="margin-top: 3em;"><!--form-->
-		<div class="container">
+<section id="form" style="margin-top: 3em; height: 455px;"><!--form-->
+		<div class="container" style="margin-top: 5em;">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-2">
 					<div class="login-form"><!--login form-->
@@ -32,7 +32,7 @@
 						<div align="center">
 						<button class="btn btn-default" onclick="app.moveJoin()">회원가입</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-default">아이디/비밀번호 찾기</button>
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">아이디/비밀번호 찾기</button>
 						</div>
 						<hr>
 					</div><!--/sign up form-->
@@ -40,6 +40,30 @@
 			</div>
 		</div>
 	</section><!--/form-->
+	
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">아이디 / 비밀번호 찾기</h4>
+        </div>
+        <div class="modal-body">
+          <p>회원 가입시 입력한 휴대폰 전화를 입력해 주세요.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
+	
+	
 	<jsp:include page="../common/footer.jsp"/>
 <script type="text/javascript">
 function App() {
