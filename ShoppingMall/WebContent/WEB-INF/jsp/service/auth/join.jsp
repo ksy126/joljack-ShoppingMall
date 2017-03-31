@@ -19,7 +19,7 @@
 		              <div class="col-sm-6">
 		                <div class="input-group">
 		                  <input type="text" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
-		                  <input type="hidden" value="" id="idConfirm">
+		                  <input type="hidden" value="false" id="idConfirm">
 		                  <span class="input-group-btn">
 		                    <button onclick="app.idCheck()" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
 		                  </span>
@@ -50,7 +50,7 @@
 		              <div class="col-sm-6">
 		              	<div class="input-group">
 		                  <input type="tel" class="form-control" id="phone" placeholder="- 없이 입력해 주세요" />
-		                  <input type="hidden" value="" id="phoneConfirm">
+		                  <input type="hidden" value="false" id="phoneConfirm">
 		                  <span class="input-group-btn">
 			                <button onclick="app.phoneCheck()" class="btn btn-default">중복 확인 &nbsp;<i class="fa fa-mail-forward spaceLeft"></i></button>
 			              </span>
@@ -191,7 +191,7 @@ function App() {
     		return isVaild;
     	}
     	
-    	if(!_this.env.idConfirm.val()) {
+    	if(_this.env.idConfirm.val() == 'false') {
     		alert("아이디 중복 확인을 해주세요.");
     		_this.env.user_id.focus();
     		isVaild = false;
@@ -231,6 +231,13 @@ function App() {
     	
     	if(_this.env.phone.val().trim() == ''){
     		alert("전화번호를 입력해 주세요.");
+    		_this.env.phone.focus();
+    		isVaild = false;
+    		return isVaild;
+    	}
+    	
+    	if(_this.env.phoneConfirm.val() == 'false') {
+    		alert("휴대폰 번호 중복 확인을 해주세요.");
     		_this.env.phone.focus();
     		isVaild = false;
     		return isVaild;
