@@ -58,6 +58,31 @@ public interface MainService {
 	 * @return
 	 */
 	public NoticeVO noticeInfoGET(Map<String, Object> pMap);
+	
+	public List<Object> myZzimList(Map<String, Object> pMap);
+	/**
+	 * 찜하기
+	 * @param pMap
+	 */
+	public void zzimSave(Map<String, Object> pMap);
+	
+	/**
+	 * 찜하기 삭제
+	 * @param pMap
+	 */
+	public void zzimDelete(Map<String, Object> pMap);
+	
+	/**
+	 * 구매 하기
+	 * @param pMap
+	 */
+	public void parchase(Map<String, Object> pMap);
+	
+	/**
+	 * 구매 리스트
+	 * @param pMap
+	 */
+	public List<Object> parchaseList(Map<String, Object> pMap);
 }
 
 

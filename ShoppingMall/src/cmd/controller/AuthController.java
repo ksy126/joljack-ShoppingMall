@@ -111,6 +111,24 @@ public class AuthController {
 		mav.setViewName("jsonView");
 		mav.addObject("isVaild", isVaild);
 		return mav;		
+	}	
+	
+	/**
+	 * 회원 전화번호 중복 검사
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/searchUserInfo.do", method = RequestMethod.GET)
+	public ModelAndView searchUserInfo(@RequestParam Map<String, Object> pMap) {		
+
+		MemberVO memberVo = null;
+		
+		memberVo = authService.userInfoVoGET(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		mav.addObject("memberVo", memberVo);
+		return mav;		
 	}
 	
 	/**
@@ -145,7 +163,27 @@ public class AuthController {
     	return mav;
     }
 	
-	
+	//로그아웃
+	@RequestMapping("/userLogout.do")
+	public void userLogout(HttpServletRequest req, HttpServletResponse res) throws Exception {
+
+		try {
+			HttpSession session = req.getSession(true);
+			Map<String, Object> sessionData = (Map<String, Object>) session.getAttribute("sessionData");
+
+			if (sessionData != null) {
+				session.removeAttribute("sessionData");
+				session.removeAttribute("member_no");
+				session.invalidate();
+				session = req.getSession(true);		
+			}
+
+			String cp = req.getContextPath();
+			res.sendRedirect(cp + "/auth/login.do");
+		} catch (Exception e) {
+			throw new Exception(e.toString());
+		}
+	}
 	
 }
 

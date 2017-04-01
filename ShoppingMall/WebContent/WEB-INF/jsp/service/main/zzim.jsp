@@ -29,88 +29,30 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image" style="width: 25%;">Item</td>
-							<td class="description" style="width: 27%;"></td>
-							<td class="price" style="width: 13%;">Price</td>
-							<td class="quantity" style="width: 10%;">Quantity</td>
-							<td class="total" style="width: 15%;">Total</td>
-							<td style="width: 10%;"></td>
+							<td class="image" style="width: 20%;">Item</td>
+							<td class="description" style="width: 40%;"></td>
+							<td class="price" style="width: 15%;" align="center">Price</td>
+							<td style="width: 25%;"></td>
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var="row" items="${zzimList}">
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
+								<img src="/upload/img/${row.p_img}" alt=""  style="width: 200px; height: 200px;"/>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<h4><a href="#">${row.p_name}</a></h4>
 							</td>
-							<td class="cart_price">
-								<p>$59</p>
+							<td class="cart_price" align="center">
+								<h4><i class="fa fa-krw" aria-hidden="true"></i>${row.p_name}</h4>
 							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="" style="background: black;">구매</a>&nbsp;
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							<td class="cart_delete" align="center">
+								<a class="cart_quantity_delete" href="javascript:;" style="background: black;" onclick="navi.detailsPage('${row.product_no}')">물품 상세정보</a>&nbsp;
+								<a class="cart_quantity_delete" href="javascript:;" onclick="app.zzimDelete('${row.zzim_no}')"><i class="fa fa-times" style="color: black;"></i></a>
 							</td>
 						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="" style="background: black;">구매</a>&nbsp;
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="" style="background: black;">구매</a>&nbsp;
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -118,5 +60,42 @@
 	</section> <!--/#cart_items-->
 	
 	<jsp:include page="../common/footer.jsp"/>
+<script type="text/javascript">
+function App() {
+    var _this = this;
+
+    // 찜 리스트 삭제
+   	_this.zzimDelete = function(zzim_no) {
+    	var params = "zzim_no="+zzim_no;
+		$.ajax({
+	        type        : "GET"  
+	      , async       : false 
+	      , url         : "/main/zzimDelete.do"
+	      , data        : params
+	      , dataType    : "json" 
+	      , timeout     : 30000
+	      , cache       : false     
+	      , contentType : "application/x-www-form-urlencoded;charset=UTF-8"
+	      , error       : function(request, status, error) {
+				alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");       
+	      }
+	      , success     : function(data) {
+	    	  location.reload();
+	      }
+    	});
+    };
+    
+    // 이벤트 바인드
+    _this.eventBind = function() {
+        
+    };
+    
+    // Init
+    _this.init = function() {
+        _this.eventBind();
+    }();
+}    
+var app = new App();
+</script>
 </body>
 </html>

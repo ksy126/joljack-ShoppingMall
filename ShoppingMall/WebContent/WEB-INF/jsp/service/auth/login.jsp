@@ -52,7 +52,34 @@
           <h4 class="modal-title">아이디 / 비밀번호 찾기</h4>
         </div>
         <div class="modal-body">
-          <p>회원 가입시 입력한 휴대폰 전화를 입력해 주세요.</p>
+            <p>회원 가입시 입력한 휴대폰 전화를 입력해 주세요.</p>
+			<div class="form-horizontal">
+				<div class="form-group">
+				  <div class="col-sm-12">
+		            <div class="input-group">
+		              <input class="form-control" id="userPhone" type="number" placeholder="Phone">
+		              <span class="input-group-btn">
+		                <button class="btn btn-success" type="button" onclick="app.searchUserInfo()">찾기 &nbsp;<i class="fa fa-edit spaceLeft"></i></button>
+		              </span>
+		            </div>
+		          </div>
+				</div>
+			</div>
+			<hr>
+			<div class="form-horizontal" id="userInfoConfirm" style="display: none;">
+				<div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputPassword">아이디</label>
+			        <div class="col-sm-9">
+			          <input class="form-control" id="userIdInfo" type="text" readonly="readonly">
+			        </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+			        <div class="col-sm-9">
+			          <input class="form-control" id="userPwdInfo" type="text" readonly="readonly">
+			        </div>
+		        </div>
+			</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -68,6 +95,41 @@
 <script type="text/javascript">
 function App() {
     var _this = this;
+    
+    _this.searchUserInfo = function() {
+    	var phone = $('#userPhone').val();
+    	
+    	if(phone.trim() == ''){
+    		alert("가입시 입력한 Phone 정보를 입력 하세요.")
+    		return false;
+    	} else {
+    		var params = "phone="+phone;
+    		$.ajax({
+    	        type        : "GET"  
+    	      , async       : false 
+    	      , url         : "/auth/searchUserInfo.do"
+    	      , data        : params
+    	      , dataType    : "json" 
+    	      , timeout     : 30000
+    	      , cache       : false     
+    	      , contentType : "application/x-www-form-urlencoded;charset=UTF-8"
+    	      , error       : function(request, status, error) {
+    				alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");       
+    	      }
+    	      , success     : function(data) {
+    	    	  if(data.memberVo == null) {
+    	    		  alert("일치하는 정보가 없습니다.");
+    	    		  $('#userInfoConfirm').hide();
+    	    	  } else {
+    	    		  $('#userInfoConfirm').show();
+    	    		  $('#userIdInfo').val(data.memberVo.user_id);
+    	    		  $('#userPwdInfo').val(data.memberVo.user_pwd);
+    	    	  }
+    	    	 
+    	      }
+        	});
+    	}
+    };
     
     _this.moveJoin = function() {
     	location.href="/auth/join.do";

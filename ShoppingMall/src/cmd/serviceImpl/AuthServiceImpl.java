@@ -103,6 +103,21 @@ public class AuthServiceImpl implements AuthService
 		return isVaild;
 	}
 
+	@Override
+	public MemberVO userInfoVoGET(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		MemberVO memberVo = null;
+		
+		try {
+			memberVo = (MemberVO) this.commonDao.getReadData("auth.userInfoVoGet", map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return memberVo;
+	}
+
 
 }//end class
 

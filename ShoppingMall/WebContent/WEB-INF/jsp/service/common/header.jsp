@@ -1,8 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
+	String member_no="";
+	boolean isSession = true;
+	
+	if (session.getAttribute("member_no") != null) {
+	   
+		member_no = session.getAttribute("member_no").toString();
+	  
+	} else {
+	    isSession = false;
+	    session.removeAttribute("sessionData");
+	}
 %>
-
 	<header id="header"><!--header-->		
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
@@ -21,7 +32,12 @@
 					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">
 						<div class="social-icons pull-left">
 							<ul class="nav navbar-nav">
+								<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() == null || sessionScope.sessionData.memberInfo.getMember_no() == ''}">
 								<li><a href="/auth/login.do"><i class="fa fa-lock"></i> 로그인</a></li>
+								</c:if>
+								<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() != null && sessionScope.sessionData.memberInfo.getMember_no() != ''}">
+								<li><a href="/auth/userLogout.do"><i class="fa fa-lock"></i> 로그아웃</a></li>
+								</c:if>
 								<li><a href="/auth/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
 								<li><a href="/main/zzim.do"><i class="fa fa-star"></i> 찜</a></li>
 								<li><a href="/main/cart.do"><i class="fa fa-shopping-cart"></i> 장바구니</a></li>

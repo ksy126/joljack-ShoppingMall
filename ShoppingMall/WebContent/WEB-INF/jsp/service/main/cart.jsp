@@ -21,7 +21,14 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<section id="cart_items">
+		
 		<div class="container">
+			<div class="panel panel-default" style="margin: 1.5em 5.5em 1.5em 5.5em;" align="center">
+			  <div class="panel-body">
+			  	<h4>결제 완료 ( 배송중 )</h4>
+			  </div>
+			</div>
+		
 			<div class="breadcrumbs" style="margin-top: 3em;">
 				<h2 class="title text-center">장바구니</h2>
 			</div>
@@ -30,113 +37,41 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description"></td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td></td>
+							<td class="image" style="width: 25%;">Item</td>
+							<td class="description" style="width: 30%;"></td>
+							<td class="price" align="center" style="width: 10%;">Price</td>
+							<td class="quantity" align="center" style="width: 10%;">Quantity</td>
+							<td class="total" align="center" style="width: 15%;">Total</td>
+							<td style="width: 10%;"></td>
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var="row" items="${parchaseList}">
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="images/cart/one.png" alt=""></a>
+								<img src="/upload/img/${row.p_img}" alt="" style="width: 200px; height: 200px;"/>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
+								<h4><a href="#">${row.p_name}</a></h4>
 							</td>
-							<td class="cart_price">
-								<p>$59</p>
+							<td class="cart_price" align="center">
+								<h4><i class="fa fa-krw" aria-hidden="true"></i> ${row.p_price}</h4>
 							</td>
-							<td class="cart_quantity">
+							<td class="cart_quantity" align="center">
 								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<h4>${row.quantity} 개</h4>
 								</div>
 							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
+							<td class="cart_total" align="center">
+								<h4 class="cart_total_price"><i class="fa fa-krw" aria-hidden="true"></i> ${row.quantity * row.p_price}</h4>
 							</td>
-							<td class="cart_delete">
+							<td class="cart_delete" align="center">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td>Cart Sub Total</td>
-										<td>$59</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
-									</tr>
-									<tr class="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>Free</td>										
-									</tr>
-									<tr>
-										<td>Total</td>
-										<td><span>$61</span></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-			<div class="payment-options col-sm-1 col-sm-offset-11">
-				<button type="submit" class="btn btn-default">구매하기</button>
 			</div>
 		</div>
 	</section> <!--/#cart_items-->

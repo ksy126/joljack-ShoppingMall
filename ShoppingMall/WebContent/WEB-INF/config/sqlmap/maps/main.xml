@@ -63,6 +63,32 @@
 			product_no = #{product_no}
 	</select>
 	
+	<select id="selectZzimList" parameterType="map" resultType="cmd.vo.ZzimVO">
+		SELECT
+			z.zzim_no
+			,z.member_no
+			, z.product_no
+			, p.p_name
+			, p.p_price
+			, p.p_img
+		FROM
+			zzim z
+			, product p
+		WHERE
+			z.product_no = p.product_no
+		AND
+			z.member_no = #{member_no};
+	</select>
+	
+	<update id="productUpdate" parameterType="map">
+		UPDATE
+			product
+		SET
+			p_buy_amount = #{p_buy_amount}
+		WHERE
+			product_no = #{product_no}
+	</update>
+	
 	<insert id="insertQaInfo" parameterType="map">
 		INSERT INTO
 			qa
@@ -78,6 +104,36 @@
 				, #{qa_title}
 				, #{qa_content}
 				, NOW()
+			)
+	</insert>
+	
+	<insert id="zzimSave" parameterType="map">
+		INSERT INTO
+			zzim
+			(
+				member_no
+				, product_no
+			)
+		VALUES
+			(
+				#{member_no}
+				, #{product_no}
+			)
+	</insert>
+	
+	<insert id="purchaseInsert" parameterType="map">
+		INSERT INTO
+			purchase
+			(
+				member_no
+				, product_no
+				, quantity
+			)
+		VALUES
+			(
+				#{member_no}
+				, #{product_no}
+				, #{quantity}
 			)
 	</insert>
 	
@@ -131,6 +187,31 @@
 			notice
 		WHERE
 			notice_no = #{notice_no}
+	</select>
+	
+	<delete id="zzimDelete" parameterType="map">
+		DELETE FROM
+			zzim
+		WHERE
+			zzim_no = #{zzim_no}
+	</delete>
+	
+	<select id="purchaseSelect" parameterType="map" resultType="cmd.vo.PurchaseVO">
+		SELECT
+			p.purchase_no
+			, p.product_no
+			, p.member_no
+			, p.quantity
+			, pd.p_img
+			, pd.p_name
+			, pd.p_price
+		FROM
+			purchase p
+			, product pd
+		WHERE
+			p.product_no = pd.product_no
+		AND
+			member_no = #{member_no}
 	</select>
 	
 </mapper>

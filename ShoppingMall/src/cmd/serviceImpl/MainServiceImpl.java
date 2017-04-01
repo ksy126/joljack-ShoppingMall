@@ -121,7 +121,75 @@ public class MainServiceImpl implements MainService
 		return noticeVo;
 	}
 
+	@Override
+	public List<Object> myZzimList(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("main.selectZzimList", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public void zzimSave(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		
+		try {
+			this.commonDao.insertData("main.zzimSave", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
+	@Override
+	public void zzimDelete(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.deleteData("main.zzimDelete", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void parchase(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		
+		try {
+			// 상품 테이블 구매 수량 업데이트
+			this.commonDao.updateData("main.productUpdate", pMap);
+			// 구매 목록 테이블 업데이트
+			this.commonDao.insertData("main.purchaseInsert", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public List<Object> parchaseList(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("main.purchaseSelect", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }//end class
 

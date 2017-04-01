@@ -39,6 +39,15 @@
 			user_pwd = #{user_pwd}
 	</select>
 	
+	<select id="userInfoVoGet" resultType="cmd.vo.MemberVO" parameterType="map">
+		SELECT
+			*
+		FROM
+			member
+		WHERE
+			phone = #{phone}
+	</select>	
+	
 	<select id="idCheck" resultType="cmd.vo.MemberVO" parameterType="map">
 		SELECT
 			*
