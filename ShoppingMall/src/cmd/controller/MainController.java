@@ -182,7 +182,7 @@ public class MainController {
 	 * 쇼핑몰 공지사항 상세페이지 이동
 	 */
 	@RequestMapping(value="/notice/detail.do")
-    public ModelAndView noticeDetais( HttpServletRequest 				request,
+    public ModelAndView noticeDetais( HttpServletRequest 			request,
     							 HttpServletResponse 				response,
     							 @RequestParam Map<String, Object> 	map) throws Exception {    	
 		
@@ -354,6 +354,26 @@ public class MainController {
     									 @RequestParam Map<String, Object> 	map) throws Exception {
     	
 		mainService.parchase(map);
+		
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("jsonView");
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 장바구니 삭제
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/purchaseDelete.do")
+    public ModelAndView purchaseDelete( HttpServletRequest 				request,
+    									HttpServletResponse 				response,
+    									@RequestParam Map<String, Object> 	map) throws Exception {
+    	
+		mainService.purchaseDelete(map);
 		
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("jsonView");

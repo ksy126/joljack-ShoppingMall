@@ -19,7 +19,7 @@
                             <a href="/admin/product/regeist.do"> 상품 등록</a>
                         </li>
                         <li>
-                            <a href="/admin/product/list.do"> 상품 수정/삭제</a>
+                            <a href="/admin/product/list.do"> 상품 리스트</a>
                         </li>
                     </ul>
                 </li>

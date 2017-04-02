@@ -191,5 +191,31 @@ public class MainServiceImpl implements MainService
 		return result;
 	}
 
+	@Override
+	public void purchaseDelete(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			
+			// 기존 상품 구매 수량 복원
+			ProductVO productVo = null;
+			
+			productVo = (ProductVO) this.commonDao.getReadData("main.selectProductInfo", pMap);
+			
+			int p_buy_amount = Integer.parseInt(productVo.getP_buy_amount());
+			
+			p_buy_amount = p_buy_amount - Integer.parseInt(pMap.get("quantity").toString());
+			
+			pMap.put("p_buy_amount", p_buy_amount);
+			
+			// 상품 테이블 구매 수량 업데이트
+			this.commonDao.updateData("main.productUpdate", pMap);
+			// 구매 목록에서 삭제
+			this.commonDao.deleteData("main.purchaseDelete", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }//end class
 

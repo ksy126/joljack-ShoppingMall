@@ -55,7 +55,7 @@ function App() {
     _this.env = {};
     
     _this.moveNoticeDetails = function(notice_no) {
-    	loaction.href="/admin/notice/details.do?notice_no="+notice_no;
+    	location.href="/admin/notice/details.do?notice_no="+notice_no;
     };
 
     // 이벤트 바인드

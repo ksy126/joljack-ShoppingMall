@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 %>
@@ -33,31 +34,21 @@
 	                                        <tr>
 	                                            <th>아이디</th>
 	                                            <th>성명</th>
-	                                            <th>생년월일</th>
+	                                            <th>연락처</th>
 	                                            <th>관리자 조치</th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
+	                                    	<c:forEach var="row" items="${memberList}">
 	                                        <tr>
-	                                            <td>3326</td>
-	                                            <td>10/21/2013</td>
-	                                            <td>3:29 PM</td>
-	                                            <td>
-	                                            	<button type="button" class="btn btn-danger btn-xs">삭제</button>
+	                                            <td>${row.user_id}</td>
+	                                            <td>${row.name }</td>
+	                                            <td>${row.phone}</td>
+	                                            <td align="center">
+	                                            	<button onclick="app.memberDelete('${row.member_no}')" type="button" class="btn btn-danger btn-xs">삭제</button>
 	                                            </td>
 	                                        </tr>
-	                                        <tr>
-	                                            <td>3325</td>
-	                                            <td>10/21/2013</td>
-	                                            <td>3:20 PM</td>
-	                                            <td>$234.34</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td>3324</td>
-	                                            <td>10/21/2013</td>
-	                                            <td>3:03 PM</td>
-	                                            <td>$724.17</td>
-	                                        </tr>
+	                                        </c:forEach>
 	                                    </tbody>
 	                                </table>
 	                            </div>
@@ -74,6 +65,44 @@
 	    <!-- /.row -->
 	</div>
 	<!-- /#page-wrapper -->
+<script>
+function App() {
+    var _this = this;
+    
+    // ENV
+    _this.env = {};
+    
+    _this.memberDelete = function(member_no) {
+    	var params = "member_no="+member_no;
+		$.ajax({
+	        type        : "GET"  
+	      , async       : false 
+	      , url         : "/admin/memberDelete.do"
+	      , data        : params
+	      , dataType    : "json" 
+	      , timeout     : 30000
+	      , cache       : false     
+	      , contentType : "application/x-www-form-urlencoded;charset=UTF-8"
+	      , error       : function(request, status, error) {
+				alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");       
+	      }
+	      , success     : function(data) {
+	    	  location.reload();
+	      }
+    	});
+    };
 
+    // 이벤트 바인드
+    _this.eventBind = function() {
+        
+    };
+    
+    // Init
+    _this.init = function() {
+        _this.eventBind();
+    }();
+}    
+var app = new App();
+</script>
 </body>
 </html>

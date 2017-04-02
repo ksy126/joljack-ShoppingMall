@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cmd.service.AdminService;
+import cmd.service.MainService;
+import cmd.vo.NoticeVO;
+import cmd.vo.QaVO;
 import helper.util.FileUtil;
 
 
@@ -32,6 +35,8 @@ public class AdminController {
 	
 	@Resource(name = "adminService")
 	private AdminService adminService;
+	@Resource(name = "mainService")
+	private MainService mainService;
 	
 	/**
 	 * 메인 페이지 이동
@@ -43,9 +48,9 @@ public class AdminController {
 	 */
 	@RequestMapping(value="/main.do")
     public ModelAndView main( 	HttpServletRequest 					request,
-    									HttpServletResponse 				response,
-    									@RequestParam Map<String, Object> 	map) throws Exception {
-    	
+    							HttpServletResponse 				response,
+    							@RequestParam Map<String, Object> 	map) throws Exception {
+		
     	ModelAndView mav = new ModelAndView("admin/main");
     	return mav;
     }
@@ -62,8 +67,32 @@ public class AdminController {
     public ModelAndView member( HttpServletRequest 					request,
     							HttpServletResponse 				response,
     							@RequestParam Map<String, Object> 	map) throws Exception {
-    	
+		
+		// 회원 리스트
+		List<Object> memberList = null;
+		
+		memberList = adminService.memberList();
     	ModelAndView mav = new ModelAndView("admin/member");
+    	mav.addObject("memberList", memberList);
+    	return mav;
+    }
+	
+	/**
+	 * 회원 삭제
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/memberDelete.do")
+    public ModelAndView memberDelete( HttpServletRequest 					request,
+    								  HttpServletResponse 				response,
+    								  @RequestParam Map<String, Object> 	map) throws Exception {
+		adminService.memberDelete(map);
+		
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("jsonView");
     	return mav;
     }
 	
@@ -111,8 +140,14 @@ public class AdminController {
     public ModelAndView productList( HttpServletRequest 				request,
     								 HttpServletResponse 				response,
     								 @RequestParam Map<String, Object> 	map) throws Exception {
+    	List<Object> allList = null;
+    	Map<String, Object> pMap = new HashMap<String, Object>();
+    	pMap.put("po", 0);
+		pMap.put("ps", 1000);
+    	allList = mainService.productList(pMap);
     	
     	ModelAndView mav = new ModelAndView("admin/product_list");
+    	mav.addObject("allList", allList);
     	return mav;
     }
 	
@@ -128,11 +163,49 @@ public class AdminController {
     public ModelAndView question( HttpServletRequest 				request,
     							  HttpServletResponse 				response,
     							  @RequestParam Map<String, Object> map) throws Exception {
-    	
+    	List<Object> questionList = null;
+    	Map<String, Object> pMap = new HashMap<>();
+    	pMap.put("po", 0);
+    	pMap.put("ps", 1000);
+    	questionList = mainService.qaList(pMap);		
+		
     	ModelAndView mav = new ModelAndView("admin/question");
+    	mav.addObject("questionList", questionList);
     	return mav;
     }
-	
+    
+	/**
+	 * 문의사항 관리 상세 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/questionDetails.do")
+    public ModelAndView questionDetails( HttpServletRequest 				request,
+    							  		 HttpServletResponse 				response,
+    							  		 @RequestParam Map<String, Object> map) throws Exception {
+		QaVO qaVo = null;
+		qaVo = mainService.qaInfoGET(map);
+    	ModelAndView mav = new ModelAndView("admin/questionDetails");
+    	mav.addObject("qaVo", qaVo);
+    	return mav;
+    }
+	/**
+	 * 문의 답변 등록
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/save/qaAnswer.do")
+	public ModelAndView qaAnswer(@RequestParam Map<String, Object> 	pMap) {		
+		
+		adminService.qaAnswer(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;		
+	}
 	
 	/**
 	 * 공지 등록 페이지 이동
@@ -200,14 +273,31 @@ public class AdminController {
     public ModelAndView noticeDetails( HttpServletRequest 				request,
     								HttpServletResponse 				response,
     								@RequestParam Map<String, Object> 	map) throws Exception {
-    	
+    	NoticeVO noticeVo = null;
+		noticeVo = mainService.noticeInfoGET(map);
 		
-		
-    	ModelAndView mav = new ModelAndView("admin/notice_list");
+    	ModelAndView mav = new ModelAndView("admin/noticeDetails");
+    	mav.addObject("noticeVo", noticeVo);
     	return mav;
     }
 	
-	
+	/**
+	 * 공지 삭제
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/noticeDelete.do")
+    public ModelAndView noticeDelete( HttpServletRequest 				request,
+    								   HttpServletResponse 				response,
+    								   @RequestParam Map<String, Object> 	map) throws Exception {
+		adminService.noticeDelete(map);
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("jsonView");
+    	return mav;
+    }
 	
 	/**
 	 * 업체파일업로드

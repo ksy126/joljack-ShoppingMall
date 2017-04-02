@@ -55,4 +55,34 @@
 	ORDER BY notice_insertDate DESC;
 	</select>
 	
+	<select id="selectMemberList" parameterType="map" resultType="cmd.vo.MemberVO">
+		SELECT
+			*
+		FROM
+			member
+	</select>
+	
+	<delete id="deleteMember" parameterType="map">
+		DELETE FROM
+			member
+		WHERE
+			member_no = #{member_no}
+	</delete>
+	
+	<update id="qaAnswerUpdate" parameterType="map">
+		UPDATE
+			qa
+		SET
+			qa_answer = #{qa_answer}
+		WHERE
+			qa_no = #{qa_no}
+	</update>
+	
+	<delete id="noticeDelete">
+		DELETE FROM
+			notice
+		WHERE
+			notice_no = #{notice_no}
+	</delete>
+	
 </mapper>

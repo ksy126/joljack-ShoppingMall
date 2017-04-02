@@ -6,9 +6,16 @@ public class QaVO {
 	private String member_no;
 	private String qa_title;
 	private String qa_content;
+	private String qa_answer;
 	private String qa_insertDate;
 	private String name;
 	
+	public String getQa_answer() {
+		return qa_answer;
+	}
+	public void setQa_answer(String qa_answer) {
+		this.qa_answer = qa_answer;
+	}
 	public String getName() {
 		return name;
 	}

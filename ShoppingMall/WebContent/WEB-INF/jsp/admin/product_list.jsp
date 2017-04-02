@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 %>
@@ -29,37 +30,21 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
+                                        <th style="width: 40%">상품이름</th>
+                                        <th style="width: 25%">카테고리</th>
+                                        <th style="width: 15%">상품 총 수량</th>
+                                        <th style="width: 20%">상품 구매 수량</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                	<c:forEach var="row" items="${allList}">
                                     <tr class="success">
-                                        <td>1</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>${row.p_name}</td>
+                                        <td>${row.p_category}</td>
+                                        <td align="center">${row.p_amount}</td>
+                                        <td align="center">${row.p_buy_amount}</td>
                                     </tr>
-                                    <tr class="info">
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr class="warning">
-                                        <td>3</td>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                    <tr class="danger">
-                                        <td>4</td>
-                                        <td>John</td>
-                                        <td>Smith</td>
-                                        <td>@jsmith</td>
-                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

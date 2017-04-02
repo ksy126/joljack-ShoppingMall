@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 %>
@@ -33,29 +34,17 @@
 	                                        <tr>
 	                                            <th>번호</th>
 	                                            <th>제목</th>
-	                                            <th>글쓴이</th>
-	                                            <th>날짜</th>
+	                                            <th>작성자</th>
 	                                        </tr>
 	                                    </thead>
 	                                    <tbody>
-	                                        <tr>
-	                                            <td>3326</td>
-	                                            <td>10/21/2013</td>
-	                                            <td>3:29 PM</td>
-	                                            <td>$234.34</td>
+	                                    	<c:forEach var="row" items="${questionList}">
+	                                        <tr onclick="app.questionDetails('${row.qa_no}')">
+	                                            <td>${row.qa_no}</td>
+	                                            <td>${row.qa_title}</td>
+	                                            <td>${row.name}</td>
 	                                        </tr>
-	                                        <tr>
-	                                            <td>3325</td>
-	                                            <td>10/21/2013</td>
-	                                            <td>3:20 PM</td>
-	                                            <td>$234.34</td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td>3324</td>
-	                                            <td>10/21/2013</td>
-	                                            <td>3:03 PM</td>
-	                                            <td>$724.17</td>
-	                                        </tr>
+	                                        </c:forEach>
 	                                    </tbody>
 	                                </table>
 	                            </div>
@@ -72,6 +61,28 @@
 	    <!-- /.row -->
 	</div>
 	<!-- /#page-wrapper -->
+<script>
+function App() {
+    var _this = this;
+    
+    // ENV
+    _this.env = {};
+    
+    _this.questionDetails = function(qa_no) {
+    	location.href="/admin/questionDetails.do?qa_no="+qa_no
+    };
 
+    // 이벤트 바인드
+    _this.eventBind = function() {
+        
+    };
+    
+    // Init
+    _this.init = function() {
+        _this.eventBind();
+    }();
+}    
+var app = new App();
+</script>
 </body>
 </html>

@@ -83,6 +83,12 @@ public interface MainService {
 	 * @param pMap
 	 */
 	public List<Object> parchaseList(Map<String, Object> pMap);
+	
+	/**
+	 * 장바구니 삭제
+	 * @param pMap
+	 */
+	public void purchaseDelete(Map<String, Object> pMap);
 }
 
 

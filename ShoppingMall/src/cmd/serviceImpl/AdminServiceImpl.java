@@ -60,6 +60,54 @@ public class AdminServiceImpl implements AdminService
 		return result;
 	}
 
+	@Override
+	public List<Object> memberList() {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("admin.selectMemberList");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void memberDelete(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.deleteData("admin.deleteMember", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void qaAnswer(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.updateData("admin.qaAnswerUpdate", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void noticeDelete(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.deleteData("admin.noticeDelete", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }//end class
 

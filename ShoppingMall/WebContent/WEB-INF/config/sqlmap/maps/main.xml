@@ -30,7 +30,7 @@
 					AND 2=2
 				</otherwise>
 			</choose>
-			<if test="search != ''">
+			<if test="search != null ">
 				AND p_name LIKE CONCAT(#{search}, '%')
 			</if>
 		ORDER by
@@ -144,6 +144,7 @@
 			, q.qa_title
 			, q.qa_content
 			, q.qa_insertDate
+			, q.qa_answer
 			, m.name
 		FROM
 			qa q
@@ -161,6 +162,7 @@
 			, q.qa_title
 			, q.qa_content
 			, q.qa_insertDate
+			, q.qa_answer
 			, m.name
 		FROM
 			qa q
@@ -194,6 +196,13 @@
 			zzim
 		WHERE
 			zzim_no = #{zzim_no}
+	</delete>
+	
+	<delete id="purchaseDelete" parameterType="map">
+		DELETE FROM
+			purchase
+		WHERE
+			purchase_no = #{purchase_no}
 	</delete>
 	
 	<select id="purchaseSelect" parameterType="map" resultType="cmd.vo.PurchaseVO">

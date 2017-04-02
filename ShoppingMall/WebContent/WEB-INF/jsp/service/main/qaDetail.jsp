@@ -17,7 +17,7 @@
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-xs-12">
 									<p>&nbsp;</p>
-									<p style="font-size: 19px;"><b>${qaVo.qa_title} }</b></p>
+									<p style="font-size: 19px;"><b>${qaVo.qa_title}</b></p>
 									
 									<form action="#">
 										<textarea name="" readonly="readonly" >${qaVo.qa_content}</textarea>
@@ -33,7 +33,7 @@
 						</a>
 						<div class="media-body">
 							<div class="blog-socials">
-								<textarea name="" readonly="readonly" placeholder="답변이 등록되지 않았습니다." style="color: black !important;"></textarea>
+								<textarea name="" readonly="readonly" placeholder="답변이 등록되지 않았습니다." style="color: black !important;">${qaVo.qa_answer}</textarea>
 							</div>
 						</div>
 					</div>

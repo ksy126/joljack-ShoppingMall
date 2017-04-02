@@ -42,7 +42,7 @@
 							<td class="price" align="center" style="width: 10%;">Price</td>
 							<td class="quantity" align="center" style="width: 10%;">Quantity</td>
 							<td class="total" align="center" style="width: 15%;">Total</td>
-							<td style="width: 10%;"></td>
+							<td align="center" style="width: 10%;">삭제</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -66,7 +66,7 @@
 								<h4 class="cart_total_price"><i class="fa fa-krw" aria-hidden="true"></i> ${row.quantity * row.p_price}</h4>
 							</td>
 							<td class="cart_delete" align="center">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href="" onclick="app.cartDelete('${row.purchase_no}', '${row.quantity}', '${row.product_no}')"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 						</c:forEach>
@@ -77,5 +77,42 @@
 	</section> <!--/#cart_items-->
 	
 	<jsp:include page="../common/footer.jsp"/>
+<script type="text/javascript">
+function App() {
+    var _this = this;
+
+    // 찜 리스트 삭제
+   	_this.cartDelete = function(purchase_no, quantity, product_no) {
+    	var params = "purchase_no="+purchase_no+"&quantity="+quantity+"&product_no="+product_no;
+		$.ajax({
+	        type        : "GET"  
+	      , async       : false 
+	      , url         : "/main/purchaseDelete.do"
+	      , data        : params
+	      , dataType    : "json" 
+	      , timeout     : 30000
+	      , cache       : false     
+	      , contentType : "application/x-www-form-urlencoded;charset=UTF-8"
+	      , error       : function(request, status, error) {
+				alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");       
+	      }
+	      , success     : function(data) {
+	    	  location.reload();
+	      }
+    	});
+    };
+    
+    // 이벤트 바인드
+    _this.eventBind = function() {
+        
+    };
+    
+    // Init
+    _this.init = function() {
+        _this.eventBind();
+    }();
+}    
+var app = new App();
+</script>
 </body>
 </html>

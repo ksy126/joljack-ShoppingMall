@@ -6,11 +6,18 @@ public class MemberVO {
 	private String user_id;
 	private String user_pwd;
 	private String name;
+	private String phone;
 	private String zip_code;
 	private String address;
 	private String sub_address;
-	private String check;
+	private String check;	
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getMember_no() {
 		return member_no;
 	}
