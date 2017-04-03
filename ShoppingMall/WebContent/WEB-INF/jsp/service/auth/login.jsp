@@ -8,31 +8,38 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
     
-<section id="form" style="margin-top: 3em; height: 455px;"><!--form-->
-		<div class="container" style="margin-top: 5em;">
+<section id="form" style="margin-top: 1em; height: 400px; margin-bottom: 100px; margin-left: -5em;"><!--form-->
+		<div class="container" style="margin-top: 2em;">
 			<div class="row">
-				<div class="col-sm-4 col-sm-offset-2">
+				<h3 style="margin-left: 3em; margin-right: 3em;">LOGIN</h3>
+				<hr style="margin-left: 3em; margin-right: 3em;">
+				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
-						<h2>로그인</h2>
+						<h2 style="margin-bottom: 5px !important;"><strong>회원 로그인</strong></h2>
+						<span>회원 아이디와 비밀번호를 입력하세요</span>
 						<hr>
 						<form>
 							<input type="text" id="user_id" placeholder="아이디" />
 							<input type="password" id="user_pwd" placeholder="비밀번호" />							
 						</form>
-						<button onclick="app.login()" class="btn btn-default">Login</button>
+						<button onclick="app.login()" class="btn btn-primary btn-block">Login</button>
 					</div><!--/login form-->
 				</div>
-				<div class="col-sm-1">
+				<div class="col-sm-1 col-sm-offset-1">
 					<h2 class="or">OR</h2>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-4 col-sm-offset-1">
 					<div class="signup-form"><!--sign up form-->
-						<h2>회원가입 & 아이디/비밀번호 찾기</h2>
-						<hr>
+						<h2><strong>아직 UPNORMAL 회원이 아니신가요?</strong></h2>
 						<div align="center">
-						<button class="btn btn-default" onclick="app.moveJoin()">회원가입</button>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">아이디/비밀번호 찾기</button>
+						<button class="btn btn-primary btn-block" onclick="app.moveJoin()">회원가입 바로가기</button>
+						</div>
+						<hr>
+					</div><!--/sign up form-->
+					<div class="signup-form"><!--sign up form-->
+						<h2><strong>아이디/비밀번호를 잊으셨나요?</strong></h2>
+						<div align="center">
+						<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">아이디/비밀번호 찾기</button>
 						</div>
 						<hr>
 					</div><!--/sign up form-->

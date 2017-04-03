@@ -17,9 +17,6 @@
 	  	<div class="col-sm-10" style="font-size: 24px; margin-bottom: 1.5em;">
 	  		<i class="fa fa-question-circle fa-3" aria-hidden="true"></i>&nbsp;<span>문의하기</span>
 	  	</div>
-  		<div class="col-sm-2" align="right">
-			<button type="submit" class="btn btn-default" onclick="app.moveWrite()">문의 등록</button>
-		</div>
 	  </div>
 	  <table class="table table-striped">
 	    <thead>
@@ -40,18 +37,22 @@
 	    </tbody>
 	  </table>
 	  
-	<div class="col-sm-12" align="center">
-		<ul class="pagination">
-			<c:if test="${po == 0}">
-			<li><a href="javascript:;" onclick="app.paging('first')">첫 페이지</a></li>
-			</c:if>
-			<c:if test="${po > 0}">
-			<li><a href="javascript:;" onclick="app.paging('prev')">이전페이지</a></li>
-			</c:if>
-			<li class="active"><a href="">${po + 1}</a></li>
-			<li><a href="javascript:;" onclick="app.paging('next')">다음페이지</a></li>
-		</ul>
-	</div>
+		<div class="col-sm-8 col-sm-offset-2" align="center">
+			<ul class="pagination">
+				<c:if test="${po == 0}">
+				<li><a href="javascript:;" onclick="app.paging('first')">첫 페이지</a></li>
+				</c:if>
+				<c:if test="${po > 0}">
+				<li><a href="javascript:;" onclick="app.paging('prev')">이전페이지</a></li>
+				</c:if>
+				<li class="active"><a href="">${po + 1}</a></li>
+				<li><a href="javascript:;" onclick="app.paging('next')">다음페이지</a></li>
+			</ul>
+		</div>
+	
+  		<div class="col-sm-2" align="right">
+			<button type="submit" class="btn btn-default" onclick="app.moveWrite()">문의 등록</button>
+		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"/>
 

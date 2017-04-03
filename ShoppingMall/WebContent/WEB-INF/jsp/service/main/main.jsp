@@ -28,7 +28,7 @@
 						<a href="#bestItem"><img src="<%=cp%>/images/mainSlider/slide02.jpg" style="width: 100%; height: 300px;"></a>
 					</div>
 					<div class="item">
-						<img src="<%=cp%>/images/mainSlider/slide03.jpg" style="width: 100%; height: 300px;">
+						<a href="/main/notice.do"><img src="<%=cp%>/images/mainSlider/slide03.jpg" style="width: 100%; height: 300px;"></a>
 					</div>
 				</div>
 				

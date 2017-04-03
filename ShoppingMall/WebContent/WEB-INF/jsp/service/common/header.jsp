@@ -40,7 +40,7 @@
 								</c:if>
 								<li><a href="/auth/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
 								<li><a href="/main/zzim.do"><i class="fa fa-star"></i> 찜</a></li>
-								<li><a href="/main/cart.do"><i class="fa fa-shopping-cart"></i> 장바구니</a></li>
+								<li><a href="/main/cart.do"><i class="fa fa-shopping-cart"></i> 배송조회</a></li>
 							</ul>
 						</div>
 					</div>
