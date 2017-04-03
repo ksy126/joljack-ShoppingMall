@@ -46,7 +46,8 @@
 								<p><b>총 &nbsp;&nbsp;&nbsp;&nbsp;수량 &nbsp;&nbsp;:&nbsp;&nbsp;</b> ${productInfo.p_amount}</p>
 								<p><b>판매 수량 &nbsp;&nbsp;:&nbsp;&nbsp;</b> ${productInfo.p_buy_amount}</p>
 								<p><b>남은 수량 &nbsp;&nbsp;:&nbsp;&nbsp;</b> ${productInfo.p_amount - productInfo.p_buy_amount}</p>
-								<a href=""><img src="<%=cp%>/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
+								<a href="https://www.facebook.com/업노멀-630826543753989/?fref=ts"><img src="<%=cp%>/images/facebook.png" alt="" width="30px;"/></a>&nbsp;&nbsp;&nbsp;
+								<a href="https://www.instagram.com/upnormall_/"><img src="<%=cp%>/images/instagram.png" alt="" width="30px;"/></a>
 							</div><!--/product-information-->
 						</div>
 						<div class="col-xs-7" style="margin-top: 1em; mar">

@@ -2,13 +2,6 @@
 <%  
 	String cp = request.getContextPath();
 %>
-	<footer id="footer"><!--Footer-->				
-		<div class="footer-bottom" align="center">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Copyright © 2017 졸업작품</p>
-				</div>
-			</div>
-		</div>
-		
-	</footer><!--/Footer-->
+	<footer id="footer"><!--Footer-->
+		<img src="<%=cp%>/images/footerImg.jpg" alt="" width="100%"/>
+	</footer>
