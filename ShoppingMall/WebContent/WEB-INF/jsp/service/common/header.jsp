@@ -26,7 +26,7 @@
 					</div>
 					<div class="col-xs-4" align="center">
 						<div class="logo">
-							<a href="#"><img src="<%=cp%>/images/mainSlider/logo.png" alt="" /></a> 
+							<a href="/main/main.do"><img src="<%=cp%>/images/mainSlider/logo.png" alt="" /></a> 
 						</div>
 					</div>
 					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">

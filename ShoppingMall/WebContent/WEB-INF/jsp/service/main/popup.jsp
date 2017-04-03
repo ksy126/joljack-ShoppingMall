@@ -7,6 +7,13 @@
 <html lang="en">
 <head>
     <jsp:include page="../common/script.jsp"/>
+<script>	
+	function linkToOpener(URL){
+		if (window.opener && !window.opener.closed)
+		window.opener.location = URL;
+		window.close();
+	}
+</script>
 </head>
 
 <body style="width: 414px; height: 400px;">	
@@ -19,10 +26,10 @@
 		
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="<%=cp%>/images/mainSlider/popupSlide01.jpg" style="width: 100%;">
+				<a href="javascript:linkToOpener('/main/notice.do');"><img src="<%=cp%>/images/mainSlider/popupSlide01.jpg" style="width: 100%;"></a>
 			</div>
 			<div class="item">
-				<img src="<%=cp%>/images/mainSlider/popupSlide02.jpg" style="width: 100%;">
+				<a href="javascript:linkToOpener('/main/notice.do');"><img src="<%=cp%>/images/mainSlider/popupSlide02.jpg" style="width: 100%;"></a>
 			</div>
 		</div>
 		<div></div>
