@@ -30,7 +30,7 @@
 			</div>
 		
 			<div class="breadcrumbs" style="margin-top: 3em;">
-				<h2 class="title text-center">장바구니</h2>
+				<h2 class="title text-center">배송조회</h2>
 			</div>
 
 			<div class="table-responsive cart_info">

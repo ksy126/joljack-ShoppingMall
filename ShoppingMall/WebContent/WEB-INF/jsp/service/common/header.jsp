@@ -17,14 +17,14 @@
 	<header id="header"><!--header-->		
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
-				<div class="row">
-					<div class="col-xs-4" align="center" style="margin-top: 1.5em;">
+				<div class="row" style="width: 1200px;">
+					<div class="col-xs-3" align="center" style="margin-top: 1.5em;">
 						<div class="search_box pull-right">
 							<input type="text" placeholder="Search" id="searchValue"/>
 							<button onclick="search.search()" class="btn btn-default">검색</button>
 						</div>
 					</div>
-					<div class="col-xs-4" align="center">
+					<div class="col-xs-4" align=right>
 						<div class="logo">
 							<a href="/main/main.do"><img src="<%=cp%>/images/mainSlider/logo.png" alt="" /></a> 
 						</div>
@@ -33,14 +33,14 @@
 						<div class="social-icons pull-left">
 							<ul class="nav navbar-nav">
 								<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() == null || sessionScope.sessionData.memberInfo.getMember_no() == ''}">
-								<li><a href="/auth/login.do"><i class="fa fa-lock"></i> 로그인</a></li>
+								<li><a href="/auth/login.do"><i class="fa fa-lock"></i>로그인</a></li>
 								</c:if>
 								<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() != null && sessionScope.sessionData.memberInfo.getMember_no() != ''}">
-								<li><a href="/auth/userLogout.do"><i class="fa fa-lock"></i> 로그아웃</a></li>
+								<li><a href="/auth/userLogout.do"><i class="fa fa-lock"></i>로그아웃</a></li>
 								</c:if>
-								<li><a href="/auth/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
-								<li><a href="/main/zzim.do"><i class="fa fa-star"></i> 찜</a></li>
-								<li><a href="/main/cart.do"><i class="fa fa-shopping-cart"></i> 배송조회</a></li>
+								<li><a href="/auth/join.do"><i class="fa fa-user"></i>회원가입</a></li>
+								<li><a href="/main/zzim.do"><i class="fa fa-star"></i>장바구니</a></li>
+								<li><a href="/main/cart.do"><i class="fa fa-shopping-cart"></i>배송조회</a></li>
 							</ul>
 						</div>
 					</div>

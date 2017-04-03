@@ -23,7 +23,7 @@
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs" style="margin-top: 3em;">
-				<h2 class="title text-center">찜 리스트</h2>
+				<h2 class="title text-center">장바구니 리스트</h2>
 			</div>
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
