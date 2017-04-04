@@ -45,7 +45,7 @@
 								<h4><a href="#">${row.p_name}</a></h4>
 							</td>
 							<td class="cart_price" align="center">
-								<h4><i class="fa fa-krw" aria-hidden="true"></i>${row.p_name}</h4>
+								<h4><i class="fa fa-krw" aria-hidden="true"></i>${row.p_price}</h4>
 							</td>
 							<td class="cart_delete" align="center">
 								<a class="cart_quantity_delete" href="javascript:;" style="background: black;" onclick="navi.detailsPage('${row.product_no}')">물품 상세정보</a>&nbsp;

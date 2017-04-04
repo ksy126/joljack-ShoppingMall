@@ -37,8 +37,9 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image" style="width: 25%;">Item</td>
-							<td class="description" style="width: 30%;"></td>
+							<td class="image" style="width: 20%;">Item</td>
+							<td class="description" style="width: 25%;"></td>
+							<td class="price" align="center" style="width: 10%;">Option</td>
 							<td class="price" align="center" style="width: 10%;">Price</td>
 							<td class="quantity" align="center" style="width: 10%;">Quantity</td>
 							<td class="total" align="center" style="width: 15%;">Total</td>
@@ -53,6 +54,9 @@
 							</td>
 							<td class="cart_description">
 								<h4><a href="#">${row.p_name}</a></h4>
+							</td>
+							<td class="cart_description">
+								<h4><a href="#">${row.p_option}</a></h4>
 							</td>
 							<td class="cart_price" align="center">
 								<h4><i class="fa fa-krw" aria-hidden="true"></i> ${row.p_price}</h4>

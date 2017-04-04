@@ -18,7 +18,7 @@
 						<h2 style="margin-bottom: 5px !important;"><strong>회원 로그인</strong></h2>
 						<span>회원 아이디와 비밀번호를 입력하세요</span>
 						<hr>
-						<form>
+						<form onkeydown="javascript:if(event.keyCode==13){app.login();}">
 							<input type="text" id="user_id" placeholder="아이디" />
 							<input type="password" id="user_pwd" placeholder="비밀번호" />							
 						</form>
@@ -92,10 +92,7 @@
       
     </div>
   </div>
-	
-	
-	
-	<jsp:include page="../common/footer.jsp"/>
+  <jsp:include page="../common/footer.jsp"/>
 <script type="text/javascript">
 function App() {
     var _this = this;

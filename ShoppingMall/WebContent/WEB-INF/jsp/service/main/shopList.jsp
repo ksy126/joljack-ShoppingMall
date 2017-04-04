@@ -9,7 +9,7 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	
-	<section style="margin-top: 3em;">
+	<section style="margin-top: 3em;margin-bottom: 3em; min-height: 450px;">
 		<div class="container">
 			<div class="row">
 				<c:if test="${category == 'acc' }">
@@ -52,7 +52,12 @@
 				
 				<div class="col-sm-12">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">${category}</h2>
+						<c:if test="${category == 'shirt'}">
+							<h2 class="title text-center">SHIRT & KNIT</h2>
+						</c:if>
+						<c:if test="${category != 'shirt'}">
+							<h2 class="title text-center">${category}</h2>
+						</c:if>
 						<c:forEach var="row" items="${itemList}">
 						<div class="col-xs-3">
 							<div class="product-image-wrapper">

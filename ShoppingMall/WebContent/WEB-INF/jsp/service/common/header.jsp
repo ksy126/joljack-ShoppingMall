@@ -19,7 +19,7 @@
 			<div class="container">
 				<div class="row" style="width: 1200px;">
 					<div class="col-xs-3" align="center" style="margin-top: 1.5em;">
-						<div class="search_box pull-right">
+						<div class="search_box pull-right" onkeydown="javascript:if(event.keyCode==13){search.search();}">
 							<input type="text" placeholder="Search" id="searchValue"/>
 							<button onclick="search.search()" class="btn btn-default">검색</button>
 						</div>

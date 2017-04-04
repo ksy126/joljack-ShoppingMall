@@ -7,7 +7,7 @@
 	<jsp:include page="../common/script.jsp"/>
 <body>
 	<jsp:include page="../common/header.jsp"/>
-<section id="form" style="margin-top: 3em;"><!--form-->
+<section id="form" style="margin-top: 1em; margin-bottom: 10px;"><!--form-->
 <article class="container">
         <div class="col-md-12">
 	        <div class="page-header">
@@ -88,7 +88,6 @@
 		            </div>
 		        </div>
 	        </div>
-	        <hr>
         </div>
       </article>
 	</section><!--/form-->

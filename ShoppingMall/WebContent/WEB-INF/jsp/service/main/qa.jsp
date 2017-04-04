@@ -12,7 +12,7 @@
 <body>
 	<jsp:include page="../common/header.jsp"/>
 	
-	<div class="container" style="margin-top: 2em; min-height: 600px;">
+	<div class="container" style="margin-top: 2em; min-height: 450px;">
 	  <div>
 	  	<div class="col-sm-10" style="font-size: 24px; margin-bottom: 1.5em;">
 	  		<i class="fa fa-question-circle fa-3" aria-hidden="true"></i>&nbsp;<span>문의하기</span>

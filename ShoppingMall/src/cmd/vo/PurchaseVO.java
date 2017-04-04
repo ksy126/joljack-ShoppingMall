@@ -9,7 +9,15 @@ public class PurchaseVO {
 	private String p_img;
 	private String p_name;
 	private String p_price;
+	private String p_option;
 	
+
+	public String getP_option() {
+		return p_option;
+	}
+	public void setP_option(String p_option) {
+		this.p_option = p_option;
+	}
 	public String getPurchase_no() {
 		return purchase_no;
 	}

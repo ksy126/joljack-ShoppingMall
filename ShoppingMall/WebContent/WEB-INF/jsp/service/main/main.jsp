@@ -130,8 +130,8 @@ function openPopup() {
 	 var width = 414;
 	 var height = 400;
 	 
-	 var posX = (screen.availWidth - width) / 2;
-	 var posY = (screen.availHeight - height) / 2;	 
+	 var posX = (screen.availWidth - width) / 20;
+	 var posY = (screen.availHeight - height) / 5;
 	 
 	 var check = window.open(url, popupName,'width=' + width + ', height=' + height + ', left=' + posX + ', top=' + posY +', location=no, staus=no');
 	 //창이 열려 있는지 check

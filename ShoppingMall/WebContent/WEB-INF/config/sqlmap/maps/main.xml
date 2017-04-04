@@ -128,12 +128,14 @@
 				member_no
 				, product_no
 				, quantity
+				, p_option
 			)
 		VALUES
 			(
 				#{member_no}
 				, #{product_no}
 				, #{quantity}
+				, #{p_option}
 			)
 	</insert>
 	
@@ -211,6 +213,7 @@
 			, p.product_no
 			, p.member_no
 			, p.quantity
+			, p.p_option
 			, pd.p_img
 			, pd.p_name
 			, pd.p_price
