@@ -33,6 +33,18 @@ public interface MainService {
 	public void qaInfoPost(Map<String, Object> pMap);
 	
 	/**
+	 * 문의 수정
+	 * @param pMap ( qa_no / qa_title / qa_content )
+	 */
+	public void qaInfoPUT(Map<String, Object> pMap);
+	
+	/**
+	 * 문의 수정
+	 * @param pMap ( qa_no / qa_title / qa_content )
+	 */
+	public void qaDelete(Map<String, Object> pMap);
+	
+	/**
 	 * 문의 리스트
 	 * @param pMap ( po / ps )
 	 * @return

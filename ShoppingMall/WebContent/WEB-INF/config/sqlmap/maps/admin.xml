@@ -78,11 +78,44 @@
 			qa_no = #{qa_no}
 	</update>
 	
-	<delete id="noticeDelete">
+	<update id="noticeModify" parameterType="map">
+		UPDATE
+			notice
+		SET
+			notice_title = #{notice_title}
+			, notice_content = #{notice_content}
+		WHERE
+			notice_no = #{notice_no}
+	</update>
+	
+	<update id="productUpdate" parameterType="map">
+		UPDATE
+			product
+		SET
+			p_name = #{p_name}
+			, p_category = #{p_category}
+			, p_price = #{p_price}
+			, p_amount = #{p_amount}
+			, p_info = #{p_info}
+			<if test="p_img != ''">
+			, p_img = #{p_img}
+			</if>
+		WHERE
+			product_no = #{product_no}
+	</update>
+	
+	<delete id="noticeDelete" parameterType="map">
 		DELETE FROM
 			notice
 		WHERE
 			notice_no = #{notice_no}
+	</delete>
+	
+	<delete id="productDelete" parameterType="map">
+		DELETE FROM
+			product
+		WHERE
+			product_no = #{product_no}
 	</delete>
 	
 </mapper>

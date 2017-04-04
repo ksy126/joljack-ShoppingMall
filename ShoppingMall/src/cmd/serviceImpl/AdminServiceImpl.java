@@ -108,6 +108,39 @@ public class AdminServiceImpl implements AdminService
 		}
 	}
 
+	@Override
+	public void noticeModify(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.updateData("admin.noticeModify", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void productDelete(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.deleteData("admin.productDelete", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void productModify(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.updateData("admin.productUpdate", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }//end class
 

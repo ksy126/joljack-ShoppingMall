@@ -233,6 +233,22 @@ public class MainController {
     							 @RequestParam Map<String, Object> 	map) throws Exception {    	
 		
     	ModelAndView mav = new ModelAndView("service/main/qaWrite");
+    	mav.addObject("type", "write");
+    	return mav;
+    }
+	
+	/**
+	 * 쇼핑몰 문의수정 페이지 이동
+	 */
+	@RequestMapping(value="/qa/modify.do")
+    public ModelAndView qaModify( HttpServletRequest 				request,
+    							  HttpServletResponse 				response,
+    							  @RequestParam Map<String, Object> 	map) throws Exception {    	
+		QaVO qaVo = null;		
+		qaVo = mainService.qaInfoGET(map);		
+    	ModelAndView mav = new ModelAndView("service/main/qaWrite");
+    	mav.addObject("type", "modify");
+    	mav.addObject("qaVo", qaVo);
     	return mav;
     }
 	
@@ -272,6 +288,36 @@ public class MainController {
     	return mav;
     }
 	
+	/**
+	 * 쇼핑몰 문의 수정
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/qa/updateQa.do")
+    public ModelAndView updateQa( HttpServletRequest 				request,
+    							  HttpServletResponse 				response,
+    							  @RequestParam Map<String, Object> 	map) throws Exception {    	
+		
+		mainService.qaInfoPUT(map);
+		
+    	ModelAndView mav = new ModelAndView("redirect:/main/qa/detail.do?qa_no="+map.get("qa_no").toString());
+    	return mav;
+    }
+    
+	@RequestMapping(value="/qa/qaDelete.do")
+    public ModelAndView qaDelete( HttpServletRequest 				request,
+    							  HttpServletResponse 				response,
+    							  @RequestParam Map<String, Object> 	map) throws Exception {
+    	
+		mainService.qaDelete(map);
+		
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("jsonView");
+    	return mav;
+    }
 	/**
 	 * 쇼핑몰 찜하기 페이지 이동
 	 * @param request

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cmd.service.AdminService;
 import cmd.service.MainService;
 import cmd.vo.NoticeVO;
+import cmd.vo.ProductVO;
 import cmd.vo.QaVO;
 import helper.util.FileUtil;
 
@@ -108,8 +109,31 @@ public class AdminController {
     public ModelAndView productRegeist( HttpServletRequest 					request,
     									HttpServletResponse 				response,
     									@RequestParam Map<String, Object> 	map) throws Exception {
-    	
+		ProductVO productInfo = null;
     	ModelAndView mav = new ModelAndView("admin/product_regeist");
+    	mav.addObject("productInfo", productInfo);
+    	mav.addObject("type", "write");
+    	return mav;
+    }
+	
+	
+	/**
+	 * 상품 수정 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/product/modify.do")
+    public ModelAndView productModify( HttpServletRequest 				request,
+    								   HttpServletResponse 				response,
+    								   @RequestParam Map<String, Object> 	map) throws Exception {
+		ProductVO productInfo = null;
+		productInfo = mainService.productInfo(map);
+		ModelAndView mav = new ModelAndView("admin/product_regeist");
+		mav.addObject("productInfo", productInfo);
+		mav.addObject("type", "modify");
     	return mav;
     }
 	
@@ -122,6 +146,20 @@ public class AdminController {
 	public ModelAndView saveProduct(@RequestParam Map<String, Object> 	pMap) {		
 		
 		adminService.productPost(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;		
+	}
+	/**
+	 * 상픔 수정
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/save/productModify.do")
+	public ModelAndView productModify(@RequestParam Map<String, Object> 	pMap) {		
+		
+		adminService.productModify(pMap);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("jsonView");
@@ -221,6 +259,26 @@ public class AdminController {
     									@RequestParam Map<String, Object> 	map) throws Exception {
     	
     	ModelAndView mav = new ModelAndView("admin/notice_regeist");
+    	mav.addObject("type", "write");
+    	return mav;
+    }
+	/**
+	 * 공지 수정 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/notice/modify.do")
+    public ModelAndView noticeModify( HttpServletRequest 					request,
+    									HttpServletResponse 				response,
+    									@RequestParam Map<String, Object> 	map) throws Exception {
+		NoticeVO noticeVo = null;
+		noticeVo = mainService.noticeInfoGET(map);
+    	ModelAndView mav = new ModelAndView("admin/notice_regeist");
+    	mav.addObject("noticeVo", noticeVo);
+    	mav.addObject("type", "modify");
     	return mav;
     }
 	
@@ -233,6 +291,21 @@ public class AdminController {
 	public ModelAndView noticeProduct(@RequestParam Map<String, Object> 	pMap) {		
 		
 		adminService.noticePost(pMap);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;		
+	}
+	
+	/**
+	 * 공지 수정
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/save/modify.do")
+	public ModelAndView noticeModify(@RequestParam Map<String, Object> 	pMap) {		
+		
+		adminService.noticeModify(pMap);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("jsonView");
@@ -299,6 +372,24 @@ public class AdminController {
     	return mav;
     }
 	
+	/**
+	 * 상품 삭제
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/product/productDelete.do")
+    public ModelAndView productDelete( HttpServletRequest 				request,
+    								   HttpServletResponse 				response,
+    								   @RequestParam Map<String, Object> 	map) throws Exception {
+		adminService.productDelete(map);
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("jsonView");
+    	return mav;
+    }
+    
 	/**
 	 * 업체파일업로드
 	 * 

@@ -39,6 +39,7 @@
                                     
                                     <div>
                                     	<input type="hidden" value="${noticeVo.notice_no}" id="notice_no">
+                                    	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="app.noticeModify();">공지 수정</button>
                                     	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="app.noticeDelete();">공지 삭제</button>
                                     </div>
                                 </form>
@@ -60,6 +61,11 @@ function App() {
     
     // ENV
     _this.env = {};
+    
+    _this.noticeModify = function() {
+    	var notice_no = $('#notice_no').val();
+    	location.href="/admin/notice/modify.do?notice_no="+notice_no;
+    }
     
     _this.noticeDelete = function() {
     	var params = {

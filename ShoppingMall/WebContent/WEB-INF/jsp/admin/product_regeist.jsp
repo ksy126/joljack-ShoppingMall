@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 %>
@@ -38,40 +39,84 @@
 	                        	<form role="form">
 	                                <div class="form-group">
 	                                    <label>상품 이름</label>
-	                                    <input class="form-control" id="p_name">
+	                                    <input class="form-control" id="p_name" value="${productInfo.p_name }">
 	                                </div>
 	                                
 	                                <div class="form-group">
                                         <label>상품 카테고리</label>
                                         <select class="form-control" id="p_category">
-                                            <option value="outer">OUTER</option>
-                                            <option value="top">TOP</option>
-                                            <option value="shirt">SHIRT & KNIT</option>
-                                            <option value="pants">PANTS</option>
-                                            <option vlaue="acc">ACC</option>
+                                        	<c:if test="${productInfo.p_category == 'outer' }">
+                                        		<option value="outer" selected="selected">OUTER</option>
+                                        		<option value="top">TOP</option>
+	                                            <option value="shirt">SHIRT & KNIT</option>
+	                                            <option value="pants">PANTS</option>
+	                                            <option value="acc">ACC</option>
+                                        	</c:if>
+                                        	<c:if test="${productInfo.p_category == 'top' }">
+                                        		<option value="outer">OUTER</option>
+                                        		<option value="top" selected="selected">TOP</option>
+	                                            <option value="shirt">SHIRT & KNIT</option>
+	                                            <option value="pants">PANTS</option>
+	                                            <option value="acc">ACC</option>
+                                        	</c:if>
+                                        	<c:if test="${productInfo.p_category == 'shirt' }">
+                                        		<option value="outer">OUTER</option>
+                                        		<option value="top">TOP</option>
+	                                            <option value="shirt" selected="selected">SHIRT & KNIT</option>
+	                                            <option value="pants">PANTS</option>
+	                                            <option value="acc">ACC</option>
+                                        	</c:if>
+                                        	<c:if test="${productInfo.p_category == 'pants' }">
+                                        		<option value="outer">OUTER</option>
+                                        		<option value="top">TOP</option>
+	                                            <option value="shirt">SHIRT & KNIT</option>
+	                                            <option value="pants" selected="selected">PANTS</option>
+	                                            <option value="acc">ACC</option>
+                                        	</c:if>
+                                        	<c:if test="${productInfo.p_category == 'acc' }">
+                                        		<option value="outer">OUTER</option>
+                                        		<option value="top">TOP</option>
+	                                            <option value="shirt">SHIRT & KNIT</option>
+	                                            <option value="pants">PANTS</option>
+	                                            <option value="acc" selected="selected">ACC</option>
+                                        	</c:if>
+                                        	<c:if test="${productInfo.p_category == null }">
+                                        		<option value="outer">OUTER</option>
+                                        		<option value="top">TOP</option>
+	                                            <option value="shirt">SHIRT & KNIT</option>
+	                                            <option value="pants">PANTS</option>
+	                                            <option value="acc">ACC</option>
+                                        	</c:if>
                                         </select>
                                     </div>
                                     
                                     <div class="form-group">
 	                                    <label>상품 가격</label>
-	                                    <input class="form-control" id="p_price">
+	                                    <input class="form-control" id="p_price" value="${productInfo.p_price}">
 	                                </div>
 	                                
 	                                <div class="form-group">
 	                                    <label>상품 수량</label>
-	                                    <input class="form-control" id="p_amount">
+	                                    <input class="form-control" id="p_amount" value="${productInfo.p_amount}">
 	                                </div>
 	                                
                                     
                                         
 	                                <div class="form-group">
                                         <label>상품 상세 정보</label>
-                                        <textarea class="form-control" style="resize: none; wrap:hard;" rows="6" id="p_info"></textarea>
+                                        <textarea class="form-control" style="resize: none; wrap:hard;" rows="6" id="p_info">${productInfo.p_info}</textarea>
                                     </div>
                                     
                                     <div>
+                                    	<c:if test="${type == 'write' }">                                    	
                                     	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="app.productWrite();">등록</button>
+                                    	</c:if>
+                                    	<c:if test="${type == 'modify' }">
+                                    	<input type="text" value="${productInfo.product_no }" id="product_no">
+                                    	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="app.productModify();">수정</button>
+                                    	</c:if>
                                     </div>
+                                    <input type="hidden" value="${type}" id="type">
                                 </form>
 	                        </div>
 	                    </div>
@@ -97,6 +142,53 @@ function App() {
     	// 이미지 파일부터 먼저 등록
     	file_save();
     };
+    
+    // 상품 수정 버튼 클릭
+    _this.productModify = function() {
+    	var file = $('#file').val();
+		if( file == '' || file == 'undefined'){
+			// 수정할때 사진 등록을 안할수도 있다.
+			// 이럴땐 바로 수정하러 간다.
+			_this.productUpdate();
+		} else {
+			var frm = $('#file_upload');
+			save_file(frm);
+			return false;
+		}
+    }
+    
+    _this.productUpdate = function() {
+    	
+    	var img_Name = $('#fileNewName').val();
+    	
+    	var params = {
+    		product_no : $('#product_no').val(),
+    		p_name : _this.env.p_name.val(),
+    		p_category : _this.env.p_category.val(),
+    		p_price : _this.env.p_price.val(),
+    		p_amount : _this.env.p_amount.val(), 
+    		p_info : _this.env.p_info.val(),
+    		p_img : img_Name
+    	};
+    	
+		$.ajax({
+		      type        : "POST"
+		    , async       : true
+		    , url         : "/admin/save/productModify.do"
+		    , data        : params
+		    , dataType    : "json"
+		    , timeout     : 30000  
+		    , cache       : false    
+		    //, contentType : "application/x-www-form- urlencoded;charset=UTF-8"
+		    , success     : function(data) {
+				alert("상품 수정이 완료 되었습니다.");
+				location.reload();
+		    }
+		    , error       : function(request, status, error) {
+		        alert( "작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오." );       
+		    }
+		});
+    }
     
     // 상품 등록
     _this.productInsertData = function() {
@@ -206,7 +298,12 @@ $(document).ready(function(){
 			, success     : function(data) {
 				$("#fileUploadPath" ).val(data.fileUploadPath);
 				$("#fileNewName").val(data.fileNewName);
-				app.productInsertData();
+				var type = $('#type').val();
+				if(type == 'write'){
+					app.productInsertData();
+				} else {
+					app.productUpdate();
+				}				
 			}
 		});
 	}

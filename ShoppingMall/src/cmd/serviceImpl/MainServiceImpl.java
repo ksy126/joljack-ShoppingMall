@@ -217,5 +217,27 @@ public class MainServiceImpl implements MainService
 		}
 	}
 
+	@Override
+	public void qaInfoPUT(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.updateData("main.updateQaInfo", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void qaDelete(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		try {
+			this.commonDao.deleteData("main.qaDelete", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }//end class
 

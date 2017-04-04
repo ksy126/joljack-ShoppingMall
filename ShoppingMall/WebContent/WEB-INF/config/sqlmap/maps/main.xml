@@ -31,7 +31,7 @@
 				</otherwise>
 			</choose>
 			<if test="search != null ">
-				AND p_name LIKE CONCAT(#{search}, '%')
+				AND p_name LIKE CONCAT('%', #{search}, '%')
 			</if>
 		ORDER by
 			<choose>
@@ -87,6 +87,16 @@
 			p_buy_amount = #{p_buy_amount}
 		WHERE
 			product_no = #{product_no}
+	</update>
+	
+	<update id="updateQaInfo" parameterType="map">
+		UPDATE
+			qa
+		SET
+			qa_title = #{qa_title}
+			, qa_content = #{qa_content}
+		WHERE
+			qa_no = #{qa_no}
 	</update>
 	
 	<insert id="insertQaInfo" parameterType="map">
@@ -205,6 +215,13 @@
 			purchase
 		WHERE
 			purchase_no = #{purchase_no}
+	</delete>
+	
+	<delete id="qaDelete" parameterType="map">
+		DELETE FROM
+			qa
+		WHERE
+			qa_no = #{qa_no}
 	</delete>
 	
 	<select id="purchaseSelect" parameterType="map" resultType="cmd.vo.PurchaseVO">

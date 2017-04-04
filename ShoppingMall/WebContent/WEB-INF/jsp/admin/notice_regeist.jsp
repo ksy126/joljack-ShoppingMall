@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%  
 	String cp = request.getContextPath();
 %>
@@ -29,16 +30,22 @@
 	                        	<form role="form">
 	                                <div class="form-group">
 	                                    <label>공지 제목</label>
-	                                    <input class="form-control" id="notice_title">
+	                                    <input class="form-control" id="notice_title" value="${noticeVo.notice_title }">
 	                                </div>
                                         
 	                                <div class="form-group">
                                         <label>공지 상세 내용</label>
-                                        <textarea class="form-control" style="resize: none; wrap:hard;" rows="6" id="notice_content"></textarea>
+                                        <textarea class="form-control" style="resize: none; wrap:hard;" rows="6" id="notice_content">${noticeVo.notice_content }</textarea>
                                     </div>
                                     
                                     <div>
+                                    	<c:if test="${type == 'write' }">
                                     	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="app.noticeWrite();">등록</button>
+                                    	</c:if>
+                                    	<c:if test="${type == 'modify' }">
+                                    	<input type="hidden" value="${noticeVo.notice_no }" id="notice_no">
+                                    	<button type="button" class="btn btn-primary btn-lg btn-block" onclick="app.noticeModify();">수정</button>
+                                    	</c:if>
                                     </div>
                                 </form>
 	                        </div>
@@ -57,8 +64,34 @@ function App() {
     _this.env.notice_title = $('#notice_title');
     _this.env.notice_content = $('#notice_content');
 
+    // 공지 수정
+    _this.noticeModify = function() {
+    	var params = {
+       		notice_no : $('#notice_no').val(),
+    		notice_title : _this.env.notice_title.val(),
+       		notice_content : _this.env.notice_content.val()
+       	};
+       	
+   		$.ajax({
+   		      type        : "POST"
+   		    , async       : true
+   		    , url         : "/admin/save/modify.do"
+   		    , data        : params
+   		    , dataType    : "json"
+   		    , timeout     : 30000  
+   		    , cache       : false    
+   		    //, contentType : "application/x-www-form- urlencoded;charset=UTF-8"
+   		    , success     : function(data) {
+   				alert("공지가 수정 되었습니다.");
+   				location.reload();
+   		    }
+   		    , error       : function(request, status, error) {
+   		        alert( "작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오." );       
+   		    }
+   		});
+    }
     
-    // 상품 등록
+    // 공지 등록
     _this.noticeWrite = function() {
     	
     	var params = {

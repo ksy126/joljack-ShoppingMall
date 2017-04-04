@@ -36,19 +36,36 @@
     			<div class="col-sm-3">&nbsp;</div>
 	    		<div class="col-sm-6">
 	    			<div class="contact-form">
-	    				<h2 class="title text-center">문의 등록</h2>
-				    	<form action="/main/qa/saveQa.do" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
-				    		<input type="hidden" value="<%=member_no%>" name="member_no">
-				            <div class="form-group col-md-12">
-				                <input type="text" name="qa_title" class="form-control" required="required" placeholder="Subject">
-				            </div>
-				            <div class="form-group col-md-12">
-				                <textarea name="qa_content" id="qa_content" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
-				            </div>                        
-				            <div class="form-group col-md-12">
-				                <input type="submit" class="btn btn-primary pull-right" value="등록">
-				            </div>
-				        </form>
+	    				<c:if test="${type == 'write' }">
+		    				<h2 class="title text-center">문의 등록</h2>
+					    	<form action="/main/qa/saveQa.do" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+					    		<input type="hidden" value="<%=member_no%>" name="member_no">
+					            <div class="form-group col-md-12">
+					                <input type="text" name="qa_title" class="form-control" required="required" placeholder="Subject">
+					            </div>
+					            <div class="form-group col-md-12">
+					                <textarea name="qa_content" id="qa_content" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+					            </div>                        
+					            <div class="form-group col-md-12">
+					            	<input type="submit" class="btn btn-primary pull-right" value="등록">
+					            </div>
+					        </form>
+				        </c:if>				                
+				        <c:if test="${type == 'modify' }">
+				        	<h2 class="title text-center">문의 등록</h2>
+					    	<form action="/main/qa/updateQa.do" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+					    		<input type="hidden" value="${qaVo.qa_no }" name="qa_no">
+					            <div class="form-group col-md-12">
+					                <input type="text" name="qa_title" class="form-control" required="required" value="${qaVo.qa_title }">
+					            </div>
+					            <div class="form-group col-md-12">
+					                <textarea name="qa_content" id="qa_content" required="required" class="form-control" rows="8">${qaVo.qa_content }</textarea>
+					            </div>                        
+					            <div class="form-group col-md-12">
+					            	<input type="submit" class="btn btn-primary pull-right" value="수정">
+					            </div>
+					        </form>
+				        </c:if>
 	    			</div>
 	    		</div>    			
 	    	</div> 
