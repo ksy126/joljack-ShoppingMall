@@ -243,7 +243,8 @@ public class MainServiceImpl implements MainService
 	@Override
 	public void addNaviInfo(Map<String, Object> pMap) {
 		// TODO Auto-generated method stub
-		String currentDate = new SimpleDateFormat("yy-MM-dd hh:mm:ss").format(new java.util.Date());
+		String currentDate = new SimpleDateFormat("yy-MM-dd HH:mm:ss").format(new java.util.Date());
+		System.out.println("@@@@@@@@@"+currentDate);
 		pMap.put("insertDate", currentDate);
 		
 		try {
