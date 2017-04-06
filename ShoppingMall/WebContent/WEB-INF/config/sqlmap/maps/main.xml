@@ -149,6 +149,39 @@
 			)
 	</insert>
 	
+	<insert id="naviInfoInsert" parameterType="map">
+		INSERT INTO
+			navi
+			(
+				member_no
+				, product_no
+				, insertDate
+			)
+		VALUES
+			(
+				#{member_no}
+				, #{product_no}
+				, #{insertDate}	
+			)
+	</insert>
+	
+	<select id="naviInfoList" parameterType="map" resultType="cmd.vo.NaviVO">
+		SELECT
+			p_name
+			, p_img
+		FROM 
+			navi n
+			, product p
+		WHERE 
+			n.product_no = p.product_no
+		AND
+			n.insertDate > CURRENT_DATE() 
+		AND
+			n.member_no = #{member_no}
+		GROUP BY n.product_no
+		ORDER BY n.insertDate DESC;
+	</select>
+	
 	<select id="selectQaList" parameterType="map" resultType="cmd.vo.QaVO">
 		SELECT
 			q.qa_no

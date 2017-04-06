@@ -1,5 +1,6 @@
 package cmd.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -237,6 +238,35 @@ public class MainServiceImpl implements MainService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void addNaviInfo(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		String currentDate = new SimpleDateFormat("yy-MM-dd hh:mm:ss").format(new java.util.Date());
+		pMap.put("insertDate", currentDate);
+		
+		try {
+			this.commonDao.insertData("main.naviInfoInsert", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Object> naviInfoList(Map<String, Object> pMap) {
+		// TODO Auto-generated method stub
+		List<Object> result = null;
+		
+		try {
+			result = this.commonDao.getListData("main.naviInfoList", pMap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }//end class

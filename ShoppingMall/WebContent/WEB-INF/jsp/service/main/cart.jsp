@@ -19,6 +19,7 @@
 
 <body>
 	<jsp:include page="../common/header.jsp"/>
+	<jsp:include page="../common/navi.jsp"/>
 	
 	<section id="cart_items">
 		

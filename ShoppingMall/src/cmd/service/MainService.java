@@ -101,6 +101,10 @@ public interface MainService {
 	 * @param pMap
 	 */
 	public void purchaseDelete(Map<String, Object> pMap);
+	
+	public void addNaviInfo(Map<String, Object> pMap);
+	
+	public List<Object> naviInfoList(Map<String, Object> pMap);
 }
 
 

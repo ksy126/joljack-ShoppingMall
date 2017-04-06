@@ -11,6 +11,7 @@
 
 <body>
 	<jsp:include page="../common/header.jsp"/>
+	<jsp:include page="../common/navi.jsp"/>
 	
 	<div class="container" style="margin-top: 2em; min-height: 450px;">
 	  <div>

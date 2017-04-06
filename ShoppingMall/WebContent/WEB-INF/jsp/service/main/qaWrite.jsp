@@ -18,6 +18,7 @@
 <html lang="en">
 <head>
     <jsp:include page="../common/script.jsp"/>
+    <jsp:include page="../common/navi.jsp"/>
     
     <!-- 세션 없으면 메인페이지로 강제 이동 -->
 	<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() == null || sessionScope.sessionData.memberInfo.getMember_no() ==''}">

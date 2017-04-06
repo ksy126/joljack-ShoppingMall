@@ -11,6 +11,7 @@
 
 <body>
 	<jsp:include page="../common/header.jsp"/>
+	<jsp:include page="../common/navi.jsp"/>
 	
 		<div style="margin-bottom: 3em;">
 			<div id="slider-carousel" class="carousel slide" data-ride="carousel">

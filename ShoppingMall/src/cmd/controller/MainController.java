@@ -52,7 +52,9 @@ public class MainController {
 		List<Object> bestItemList = null;
 		List<Object> noticeList = null;
 		List<Object> qaList = null;
-		
+
+    	ModelAndView mav = new ModelAndView("service/main/main");
+    	
 		pMap.put("search", "");
 		
 		// New Item 리스트
@@ -76,7 +78,20 @@ public class MainController {
 		pMap.put("ps", 4);
 		qaList = mainService.qaList(pMap);
 		
-    	ModelAndView mav = new ModelAndView("service/main/main");
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+		
     	mav.addObject("newItemList", newItemList);
     	mav.addObject("bestItemList", bestItemList);
     	mav.addObject("noticeList", noticeList);
@@ -116,7 +131,22 @@ public class MainController {
 		
 		itemList = mainService.productList(pMap);
 		
-    	ModelAndView mav = new ModelAndView("service/main/shopList");
+    	ModelAndView mav = new ModelAndView("service/main/shopList");    	
+		
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("category", category);
     	mav.addObject("po", po);
     	mav.addObject("type", type);
@@ -143,8 +173,31 @@ public class MainController {
     	pMap.put("product_no", product_no);
     	
     	productInfo = mainService.productInfo(pMap);
+    	
+    	// 네비게이션에 정보 등록
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 아니면 등록하지 않는다.
+		} else {
+			pMap.put("member_no", member_no);
+	    	mainService.addNaviInfo(pMap);
+		}    	
 		
     	ModelAndView mav = new ModelAndView("service/main/details");
+    	
+		// 네비 정보 가져오기		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("productInfo", productInfo);
     	return mav;
     }
@@ -173,6 +226,21 @@ public class MainController {
     	noticeList = mainService.noticeList(pMap);
 		
     	ModelAndView mav = new ModelAndView("service/main/notice");
+    	
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("noticeList", noticeList);
     	mav.addObject("po", po);
     	return mav;
@@ -191,6 +259,21 @@ public class MainController {
 		noticeVo = mainService.noticeInfoGET(map);
 		
     	ModelAndView mav = new ModelAndView("service/main/noticeDetail");
+    	
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("noticeVo", noticeVo);
     	return mav;
     }
@@ -219,6 +302,21 @@ public class MainController {
     	qaList = mainService.qaList(pMap);
 		
     	ModelAndView mav = new ModelAndView("service/main/qa");
+    	
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("qaList", qaList);
     	mav.addObject("po", po);
     	return mav;
@@ -233,6 +331,21 @@ public class MainController {
     							 @RequestParam Map<String, Object> 	map) throws Exception {    	
 		
     	ModelAndView mav = new ModelAndView("service/main/qaWrite");
+    	
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("type", "write");
     	return mav;
     }
@@ -247,6 +360,21 @@ public class MainController {
 		QaVO qaVo = null;		
 		qaVo = mainService.qaInfoGET(map);		
     	ModelAndView mav = new ModelAndView("service/main/qaWrite");
+    	
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("type", "modify");
     	mav.addObject("qaVo", qaVo);
     	return mav;
@@ -265,6 +393,21 @@ public class MainController {
 		qaVo = mainService.qaInfoGET(map);
 		
     	ModelAndView mav = new ModelAndView("service/main/qaDetail");
+    	
+		// 네비 정보 가져오기
+    	HttpSession session = request.getSession();		
+		String member_no = (String) session.getAttribute("member_no");
+		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+    	
     	mav.addObject("qaVo", qaVo);
     	return mav;
     }
@@ -341,6 +484,17 @@ public class MainController {
 			map.put("member_no", member_no);
 			zzimList = mainService.myZzimList(map);
 			mav.addObject("zzimList", zzimList);
+		}
+		
+		// 네비 정보 가져오기		
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
 		}
 		
     	return mav;
@@ -451,6 +605,18 @@ public class MainController {
 			parchaseList = mainService.parchaseList(map);
 			mav.addObject("parchaseList", parchaseList);
 		}
+		
+		// 네비 정보 가져오기
+		if(member_no == null || member_no == "" || member_no == "undefined"){
+			// 로그인한 회원이 가져오지 않는다.
+		} else {
+			Map<String, Object> rMap = new HashMap<>();
+			rMap.put("member_no", member_no);
+			List<Object> naviList = null;
+			naviList = mainService.naviInfoList(rMap);
+			mav.addObject("naviList", naviList);
+		}
+		
     	return mav;
     }
 	
