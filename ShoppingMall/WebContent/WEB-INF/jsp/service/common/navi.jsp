@@ -11,7 +11,7 @@
 		<c:forEach var="row" items="${naviList}">
 		<div align="center">
 			<img src="/upload/img/${row.p_img}" width="80px;"/>
-			<p>${row.p_name }</p>			
+			<p style="color: #fff;">${row.p_name }</p>			
 		</div>
 		</c:forEach>
 	</div>

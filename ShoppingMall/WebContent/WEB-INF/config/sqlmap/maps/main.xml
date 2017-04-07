@@ -179,7 +179,8 @@
 		AND
 			n.member_no = #{member_no}
 		GROUP BY n.product_no
-		ORDER BY n.insertDate DESC;
+		ORDER BY n.insertDate DESC
+		LIMIT 0, 3;
 	</select>
 	
 	<select id="selectQaList" parameterType="map" resultType="cmd.vo.QaVO">
