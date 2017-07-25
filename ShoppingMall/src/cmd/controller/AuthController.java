@@ -25,7 +25,7 @@ import cmd.vo.MemberVO;
  */
 @Controller("Auth")
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthController {11111111111
 	
 	@Resource(name="authService")
 	private AuthService authService;
